@@ -7,7 +7,7 @@
 
 # Eurobot 2026 - Master Advanced Mechatronics
 
-This is the official baseline repository for the International Challenge of the Master Advanced test Mechatronics at Polytech Annecy-Chambéry.
+This is the official baseline repository for the International Challenge of the Master Advanced test 2 Mechatronics at Polytech Annecy-Chambéry.
 
 <p style="text-align:center"> &#9888; This project must be run as a Dev Container &#9888; </p>
 
