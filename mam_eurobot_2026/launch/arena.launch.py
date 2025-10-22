@@ -15,7 +15,7 @@ def generate_launch_description():
         ),
         DeclareLaunchArgument("world", default_value=PathJoinSubstitution([pkg_path, 'worlds', 'arena_world.sdf'])),
         ExecuteProcess(
-            cmd=["ign", "gazebo", "-r", LaunchConfiguration("world")],
+            cmd=["ign", "gazebo", "-s", LaunchConfiguration("world")],
             output="screen"
         ),
         ExecuteProcess(
@@ -42,11 +42,11 @@ def generate_launch_description():
             name='cmd_vel_bridge',
             output='screen',
             arguments=['/cmd_vel@geometry_msgs/msg/Twist@gz.msgs.Twist']
-        ),
-        Node(
-            package='rviz2',
-            executable='rviz2',
-            name='rviz2',
-            output='screen',
         )
+#        Node(
+#            package='rviz2',
+#            executable='rviz2',
+#            name='rviz2',
+#            output='screen',
+#        )
     ])
