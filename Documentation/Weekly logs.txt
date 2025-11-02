@@ -1,0 +1,10 @@
+Week 1-3:
+-Reeding rules and summarize it (see rules document)
+-Starting identifiying the main problems and the potential technical solutions
+-Setup of the Virutal machine for the project and fork of the git
+
+Week 3-6:
+-Definition of the emectronical components
+-3D models of the robot (in progress)
+-Simulation (in progress)
+-Designing of the PCB of the robot with the components (in progress)
