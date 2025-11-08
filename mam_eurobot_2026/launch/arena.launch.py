@@ -15,7 +15,7 @@ def generate_launch_description():
         ),
         DeclareLaunchArgument("world", default_value=PathJoinSubstitution([pkg_path, 'worlds', 'arena_world.sdf'])),
         ExecuteProcess(
-            cmd=["ign", "gazebo", "-s", LaunchConfiguration("world")],
+            cmd=["ign", "gazebo", "-r", LaunchConfiguration("world")],
             output="screen"
         ),
         ExecuteProcess(
