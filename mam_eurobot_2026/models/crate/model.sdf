@@ -40,8 +40,8 @@
           </box>
         </geometry>
         <material>
-          <ambient>0.0 0.3 0.8 1</ambient>
-          <diffuse>0.0 0.3 0.8 1</diffuse>
+          <ambient>0.969 0.710 0 1</ambient>
+          <diffuse>0.969 0.710 0 1</diffuse>
           <specular>0.2 0.2 0.2 1</specular>
         </material>
       </visual>
