@@ -1,4 +1,3 @@
-# Use the example structure but with your joint names
 controller_manager:
   ros__parameters:
     update_rate: 100  # Hz
