@@ -20,6 +20,7 @@ setup(
     entry_points={
         'console_scripts': [
             'py_test = mam_eurobot_2026.py_test:main',
+            'gripper_control = mam_eurobot_2026.gripper_control_node:main',
         ],
     },
 )

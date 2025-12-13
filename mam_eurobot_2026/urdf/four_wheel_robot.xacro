@@ -1,5 +1,10 @@
 <?xml version="1.0"?>
 <robot name="mecanum_vehicle" xmlns:xacro="http://www.ros.org/wiki/xacro" xmlns:ignition="http://gazebosim.org/schema">
+<!-- Karam Dali 12/02/2025 Annecy,France -->
+<!-- karamdali93@gmail.com -->
+<!-- This is a simple 4 mecanume wheels robot with a tow figer gripper in the front of it -->
+
+<!-- P.S : Any change in the robot dimentions should be reflected in config/mecanum_drive_controller.yaml -->
 
 
 <!-- Robot Dimensions Parameters -->
@@ -15,22 +20,36 @@
 <xacro:property name="wheel_radius" value="0.03" />
 <xacro:property name="wheel_width" value="0.03" />
 <xacro:property name="wheel_mass" value="0.05" />
+
+
 <!-- Wheel Inertia Parameters -->
 <xacro:property name="wheel_ixx" value="${0.5 * wheel_mass * wheel_radius * wheel_radius}" />
 <xacro:property name="wheel_iyy" value="${(1.0/12.0) * wheel_mass * (3*wheel_radius*wheel_radius + wheel_width*wheel_width)}" />
 <xacro:property name="wheel_izz" value="${wheel_iyy}" />
-
-
+<!-- We place the CHASSIS center higher so the wheels touch ground at z=0. -->
+<!-- chassis_center_z = wheel_radius + robot_z/2 -->
+<xacro:property name="chassis_center_z" value="${wheel_radius + (robot_z/2)}" />
 <!-- Calculated Joint Positions (relative to CHASSIS origin) -->
 <xacro:property name="front_x" value="${(robot_x / 2) - wheel_radius}" />
 <xacro:property name="rear_x" value="${(-robot_x / 2) + wheel_radius}" />
 <xacro:property name="left_y" value="${(robot_y / 2) + (wheel_width / 2)}" />
 <xacro:property name="right_y" value="${(-robot_y / 2) - (wheel_width / 2)}" />
+<!-- joint z is set so wheel center absolute z == wheel_radius (wheel touches ground) -->
+<!-- joint z relative to chassis origin = -robot_z/2 -->
+<xacro:property name="wheel_joint_z" value="${robot_z/2}"/>
 
+<!-- Gripper specifications -->
+<xacro:property name="gripper_mass" value="0.01" />
+<xacro:property name="gripper_x" value="0.035" />
+<xacro:property name="gripper_y" value="0.01" />
+<xacro:property name="gripper_z" value="0.05" />
+<xacro:property name="gripper_x_location" value="${(robot_x / 2) + (gripper_x/2)}" />
+<xacro:property name="gripper_L_y_location" value="${((robot_y / 2) - (gripper_y/2))}" />
+<xacro:property name="gripper_R_y_location" value="${-((robot_y / 2) - (gripper_y/2))}" />
+<xacro:property name="gripper_z_location" value="${chassis_center_z/2}" />
 
-<!-- We place the CHASSIS center higher so the wheels touch ground at z=0. -->
-<!-- chassis_center_z = wheel_radius + robot_z/2 -->
-<xacro:property name="chassis_center_z" value="${wheel_radius + (robot_z/2)}" />
+<!-- Crate length -->
+<xacro:property name="crate_length" value="0.15" />
 
 <!-- Base chassis -->
 <link name="chassis">
@@ -61,7 +80,69 @@
   </collision>
 </link>
 
-<!-- Wheel Macro: keep cylinder aligned with default Z axis inside the link -->
+<!-- Gripper Macro -->
+<xacro:macro name="gripper" params="name x y z">
+  <link name="${name}">
+    <inertial>
+      <mass value="${gripper_mass}"/>
+      <inertia 
+        ixx="${(1/12) * gripper_mass * (y*y + z*z)}"
+        ixy="0.0"
+        ixz="0.0"
+        iyy="${(1/12) * gripper_mass * (x*x + z*z)}"
+        iyz="0.0"
+        izz="${(1/12) * gripper_mass * (x*x + y*y)}"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <box size="${x} ${y} ${z}"/>
+      </geometry>
+      <material name="red_gripper">
+        <color rgba="1.0 0.0 0.0 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <box size="${x} ${y} ${z}"/>
+      </geometry>
+    </collision>
+  </link>
+</xacro:macro>
+<!-- Creat the left and right fingers of the gripper -->
+<xacro:gripper name="gripper_L" x="${gripper_x}" y="${gripper_y}" z="${gripper_z}"/>
+<xacro:gripper name="gripper_R" x="${gripper_x}" y="${gripper_y}" z="${gripper_z}"/>
+
+<!-- Gripper joint macro -->
+<xacro:macro name="gripper_joint" params="name parent child x y z robot_dimention_y side">
+  <joint name="${name}" type="prismatic">
+    <parent link="${parent}"/>
+    <child link="${child}"/>
+    <origin xyz="${x} ${y} ${z}" rpy="0 0 0"/>
+    <!-- P.S : Left gripper moves in negative Y while right gripper moves in positive Y -->
+    <xacro:if value="${side == 'left'}">
+      <axis xyz="0 -1 0"/>
+      <limit lower="0" upper="${(robot_dimention_y - (crate_length + 2*gripper_y)) / 2}" effort="1000" velocity="0.1"/>
+    </xacro:if>
+    <xacro:if value="${side == 'right'}">
+      <axis xyz="0 1 0"/>
+      <limit lower="0" upper="${(robot_dimention_y - (crate_length + 2*gripper_y)) / 2}" effort="1000" velocity="0.1"/>
+    </xacro:if>
+  </joint>
+</xacro:macro>
+
+<!-- Creat the gripper joints -->
+<xacro:gripper_joint name="gripper_L_joint" parent="chassis" child="gripper_L"
+x="${gripper_x_location}" y="${gripper_L_y_location}" z="${gripper_z_location}" 
+robot_dimention_y="${robot_y}" side="left"/>
+
+<xacro:gripper_joint name="gripper_R_joint" parent="chassis" child="gripper_R"
+x="${gripper_x_location}" y="${gripper_R_y_location}" z="${gripper_z_location}" 
+robot_dimention_y="${robot_y}" side="right"/>
+
+
+<!-- Wheel Macro -->
 <xacro:macro name="wheel" params="name color">
   <link name="${name}">
     <inertial>
@@ -69,14 +150,12 @@
       <inertia ixx="${wheel_ixx}" ixy="0.0" ixz="0.0" iyy="${wheel_iyy}" iyz="0.0" izz="${wheel_izz}"/>
     </inertial>
     <visual>
-  <!-- NO rotation here. Cylinder axis is link Z. We'll rotate at joint. -->
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
         <!--
         <cylinder radius="${wheel_radius}" length="${wheel_width}"/>
         -->
         <sphere radius="${wheel_radius}"/>
-        
       </geometry>
       <material name="${color}">
         <xacro:if value="${color == 'red'}">
@@ -88,7 +167,6 @@
       </material>
     </visual>
     <collision>
-      <!-- NO rotation here either -->
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
         <!--
@@ -106,25 +184,18 @@
 <xacro:wheel name="rear_left_wheel" color="dark_blue"/>
 <xacro:wheel name="rear_right_wheel" color="dark_blue"/>
 
-<!-- Wheel Joint Macro: rotate the wheel at the joint so the cylinder axis points along X -->
+<!-- Wheel Joint Macro -->
 <xacro:macro name="wheel_joint" params="name parent child x y z">
   <joint name="${name}" type="continuous">
     <parent link="${parent}"/>
     <child link="${child}"/>
-    <!-- rotate around Y by +90deg so link Z -> joint X; joint origin is relative to chassis origin -->
     <origin xyz="${x} ${y} ${z}" rpy="1.57079 0 0"/>
-    <!-- wheel spin axis is X in the joint frame -->
     <axis xyz="0 0 1"/>
     <dynamics damping="0.2"/>
   </joint>
 </xacro:macro>
 
 <!-- Create Wheel Joints -->
-<!-- joint z is set so wheel center absolute z == wheel_radius (wheel touches ground) -->
-<!-- joint z relative to chassis origin = -robot_z/2 -->
-<xacro:property name="wheel_joint_z" value="0.025"/>
-
-
 <xacro:wheel_joint name="front_left_wheel_joint" parent="chassis" child="front_left_wheel"
 x="${front_x}" y="${left_y}" z="${wheel_joint_z}"/>
 <xacro:wheel_joint name="front_right_wheel_joint" parent="chassis" child="front_right_wheel"
@@ -134,7 +205,7 @@ x="${rear_x}" y="${left_y}" z="${wheel_joint_z}"/>
 <xacro:wheel_joint name="rear_right_wheel_joint" parent="chassis" child="rear_right_wheel"
 x="${rear_x}" y="${right_y}" z="${wheel_joint_z}"/>
 
-<!-- Gazebo extensions -->
+<!-- Gazebo extension used to emulate mecanum wheel frictions -->
 <xacro:macro name="gazebo" params="name value">
   <gazebo reference="${name}">
     <collision>
@@ -143,7 +214,7 @@ x="${rear_x}" y="${right_y}" z="${wheel_joint_z}"/>
           <ode>
             <mu>2.0</mu>
             <mu2>0.0</mu2>
-            <!-- express friction direction in CHASSIS frame to avoid confusion -->
+            <!-- We express friction direction in CHASSIS frame to avoid confusion -->
             <fdir1 ignition:expressed_in="chassis">${value}</fdir1>
           </ode>
         </friction>
@@ -153,7 +224,7 @@ x="${rear_x}" y="${right_y}" z="${wheel_joint_z}"/>
 </xacro:macro>
 
 
-<!-- Use chassis-frame mecanum directions (X forward, Y left) -->
+<!-- Chassis-frame mecanum directions (X forward, Y left) -->
 <xacro:gazebo name="front_left_wheel"  value="1 -1 0"/>
 <xacro:gazebo name="front_right_wheel" value="1 1 0"/>
 <xacro:gazebo name="rear_left_wheel"   value="1 1 0"/>
@@ -194,6 +265,14 @@ x="${rear_x}" y="${right_y}" z="${wheel_joint_z}"/>
     </command_interface>
       <state_interface name="position"/>
       <state_interface name="velocity"/>
+  </joint>
+  <joint name="gripper_L_joint">
+  <command_interface name="position"/>
+  <state_interface name="position"/>
+  </joint>
+  <joint name="gripper_R_joint">
+    <command_interface name="position"/>
+    <state_interface name="position"/>
   </joint>
 </ros2_control>
 

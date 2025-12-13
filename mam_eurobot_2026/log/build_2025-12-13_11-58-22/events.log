@@ -1,0 +1,466 @@
+[0.000000] (-) TimerEvent: {}
+[0.001046] (mam_eurobot_2026) JobQueued: {'identifier': 'mam_eurobot_2026', 'dependencies': OrderedDict()}
+[0.001560] (mam_eurobot_2026) JobStarted: {'identifier': 'mam_eurobot_2026'}
+[0.063630] (mam_eurobot_2026) JobProgress: {'identifier': 'mam_eurobot_2026', 'progress': 'cmake'}
+[0.097798] (-) TimerEvent: {}
+[0.109063] (mam_eurobot_2026) Command: {'cmd': ['/usr/bin/cmake', '/home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026', '-DCMAKE_INSTALL_PREFIX=/home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026'], 'cwd': '/home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/build/mam_eurobot_2026', 'env': OrderedDict([('GZ_SIM_SYSTEM_PLUGIN_PATH', ':/opt/ros/humble/lib:/opt/ros/humble/lib:/opt/ros/humble/lib:/opt/ros/humble/lib'), ('PYTHON_BASIC_REPL', '1'), ('HOSTNAME', 'docker-desktop'), ('GIT_ASKPASS', '/vscode/vscode-server/bin/linux-x64/ac4cbdf48759c7d8c3eb91ffe6bb04316e263c57/extensions/git/dist/askpass.sh'), ('PIPX_HOME', '/usr/local/py-utils'), ('SHLVL', '2'), ('LIBGL_ALWAYS_SOFTWARE', '1'), ('LD_LIBRARY_PATH', '/home/rosdev/eurobot_2026_ws/install/gazebo_ros2_control/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/vscode/vscode-server/bin/linux-x64/ac4cbdf48759c7d8c3eb91ffe6bb04316e263c57/bin/helpers/browser.sh'), ('HOME', '/home/rosdev'), ('TERM_PROGRAM_VERSION', '1.106.0'), ('VSCODE_IPC_HOOK_CLI', '/tmp/vscode-ipc-bd842f23-8648-443b-b52b-936353471a96.sock'), ('PIPX_BIN_DIR', '/usr/local/py-utils/bin'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/vscode/vscode-server/bin/linux-x64/ac4cbdf48759c7d8c3eb91ffe6bb04316e263c57/extensions/git/dist/askpass-main.js'), ('VSCODE_GIT_ASKPASS_NODE', '/vscode/vscode-server/bin/linux-x64/ac4cbdf48759c7d8c3eb91ffe6bb04316e263c57/node'), ('PYDEVD_DISABLE_FILE_VALIDATION', '1'), ('BUNDLED_DEBUGPY_PATH', '/home/rosdev/.vscode-server/extensions/ms-python.debugpy-2025.16.0-linux-x64/bundled/libs/debugpy'), ('VSCODE_PYTHON_AUTOACTIVATE_GUARD', '1'), ('COLORTERM', 'truecolor'), ('REMOTE_CONTAINERS', 'true'), ('PYTHON_PATH', '/usr/local/python/current'), ('COLCON_PREFIX_PATH', '/home/rosdev/eurobot_2026_ws/install'), ('ROS_DISTRO', 'humble'), ('REMOTE_CONTAINERS_IPC', '/tmp/vscode-remote-containers-ipc-13613be7-6e11-4df7-abd6-264383e09841.sock'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('TERM', 'xterm-256color'), ('ROS_LOCALHOST_ONLY', '1'), ('PATH', '/vscode/vscode-server/bin/linux-x64/ac4cbdf48759c7d8c3eb91ffe6bb04316e263c57/bin/remote-cli:/home/rosdev/.local/bin:/opt/ros/humble/bin:/usr/local/python/current/bin:/usr/local/py-utils/bin:/usr/local/jupyter:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/rosdev/.vscode-server/extensions/ms-python.debugpy-2025.16.0-linux-x64/bundled/scripts/noConfigScripts'), ('REMOTE_CONTAINERS_SOCKETS', '[]'), ('VSCODE_DEBUGPY_ADAPTER_ENDPOINTS', '/home/rosdev/.vscode-server/extensions/ms-python.debugpy-2025.16.0-linux-x64/.noConfigDebugAdapterEndpoints/endpoint-3bed15f66c7b0abf.txt'), ('LANG', 'C.UTF-8'), ('PYTHONSTARTUP', '/home/rosdev/.vscode-server/data/User/workspaceStorage/9028281e833d84b891d60aab59ca08bd/ms-python.python/pythonrc.py'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/tmp/vscode-git-61a2087a71.sock'), ('TERM_PROGRAM', 'vscode'), ('ROS_DOMAIN_ID', '0'), ('AMENT_PREFIX_PATH', '/home/rosdev/eurobot_2026_ws/install/mam_eurobot_2026:/home/rosdev/eurobot_2026_ws/install/gazebo_ros2_control_demos:/home/rosdev/eurobot_2026_ws/install/gazebo_ros2_control:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/build/mam_eurobot_2026'), ('LC_ALL', 'C.UTF-8'), ('GAZEBO_PLUGIN_PATH', ':/opt/ros/humble/lib:/opt/ros/humble/lib:/opt/ros/humble/lib:/opt/ros/humble/lib'), ('PYTHONPATH', '/home/rosdev/eurobot_2026_ws/install/mam_eurobot_2026/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/home/rosdev/eurobot_2026_ws/install/mam_eurobot_2026:/home/rosdev/eurobot_2026_ws/install/gazebo_ros2_control_demos:/home/rosdev/eurobot_2026_ws/install/gazebo_ros2_control:/opt/ros/humble')]), 'shell': False}
+[0.197971] (-) TimerEvent: {}
+[0.298631] (-) TimerEvent: {}
+[0.399186] (-) TimerEvent: {}
+[0.499905] (-) TimerEvent: {}
+[0.536126] (mam_eurobot_2026) StdoutLine: {'line': b'-- The C compiler identification is GNU 11.4.0\n'}
+[0.600050] (-) TimerEvent: {}
+[0.700692] (-) TimerEvent: {}
+[0.801418] (-) TimerEvent: {}
+[0.822788] (mam_eurobot_2026) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 11.4.0\n'}
+[0.885277] (mam_eurobot_2026) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[0.901546] (-) TimerEvent: {}
+[1.002212] (-) TimerEvent: {}
+[1.102804] (-) TimerEvent: {}
+[1.203410] (-) TimerEvent: {}
+[1.303891] (-) TimerEvent: {}
+[1.404460] (-) TimerEvent: {}
+[1.409204] (mam_eurobot_2026) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[1.441914] (mam_eurobot_2026) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc - skipped\n'}
+[1.452355] (mam_eurobot_2026) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[1.454043] (mam_eurobot_2026) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[1.504460] (mam_eurobot_2026) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[1.505274] (-) TimerEvent: {}
+[1.605662] (-) TimerEvent: {}
+[1.706237] (-) TimerEvent: {}
+[1.806779] (-) TimerEvent: {}
+[1.907366] (-) TimerEvent: {}
+[1.999741] (mam_eurobot_2026) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[2.007509] (-) TimerEvent: {}
+[2.025204] (mam_eurobot_2026) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ - skipped\n'}
+[2.026408] (mam_eurobot_2026) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[2.027430] (mam_eurobot_2026) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[2.087329] (mam_eurobot_2026) StdoutLine: {'line': b'-- Found ament_cmake: 1.3.12 (/opt/ros/humble/share/ament_cmake/cmake)\n'}
+[2.107639] (-) TimerEvent: {}
+[2.208256] (-) TimerEvent: {}
+[2.269937] (mam_eurobot_2026) StdoutLine: {'line': b'-- Found Python3: /usr/local/python/current/bin/python3 (found version "3.10.12") found components: Interpreter \n'}
+[2.308383] (-) TimerEvent: {}
+[2.408947] (-) TimerEvent: {}
+[2.474717] (mam_eurobot_2026) StdoutLine: {'line': b'-- Found rclcpp: 16.0.15 (/opt/ros/humble/share/rclcpp/cmake)\n'}
+[2.509141] (-) TimerEvent: {}
+[2.542919] (mam_eurobot_2026) StdoutLine: {'line': b'-- Found rosidl_generator_c: 3.1.7 (/opt/ros/humble/share/rosidl_generator_c/cmake)\n'}
+[2.550462] (mam_eurobot_2026) StdoutLine: {'line': b'-- Found rosidl_adapter: 3.1.7 (/opt/ros/humble/share/rosidl_adapter/cmake)\n'}
+[2.561576] (mam_eurobot_2026) StdoutLine: {'line': b'-- Found rosidl_generator_cpp: 3.1.7 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)\n'}
+[2.580965] (mam_eurobot_2026) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[2.602947] (mam_eurobot_2026) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[2.609295] (-) TimerEvent: {}
+[2.665206] (mam_eurobot_2026) StdoutLine: {'line': b'-- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)\n'}
+[2.671549] (mam_eurobot_2026) StdoutLine: {'line': b'-- Found rmw_fastrtps_cpp: 6.2.9 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)\n'}
+[2.709459] (-) TimerEvent: {}
+[2.803911] (mam_eurobot_2026) StdoutLine: {'line': b'-- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "3.0.2")  \n'}
+[2.810459] (-) TimerEvent: {}
+[2.844955] (mam_eurobot_2026) StdoutLine: {'line': b'-- Found FastRTPS: /opt/ros/humble/include  \n'}
+[2.903230] (mam_eurobot_2026) StdoutLine: {'line': b"-- Using RMW implementation 'rmw_fastrtps_cpp' as default\n"}
+[2.910687] (-) TimerEvent: {}
+[2.963996] (mam_eurobot_2026) StdoutLine: {'line': b'-- Looking for pthread.h\n'}
+[3.010896] (-) TimerEvent: {}
+[3.111584] (-) TimerEvent: {}
+[3.213194] (-) TimerEvent: {}
+[3.313829] (-) TimerEvent: {}
+[3.414602] (-) TimerEvent: {}
+[3.512299] (mam_eurobot_2026) StdoutLine: {'line': b'-- Looking for pthread.h - found\n'}
+[3.514690] (-) TimerEvent: {}
+[3.520446] (mam_eurobot_2026) StdoutLine: {'line': b'-- Performing Test CMAKE_HAVE_LIBC_PTHREAD\n'}
+[3.614869] (-) TimerEvent: {}
+[3.715553] (-) TimerEvent: {}
+[3.816033] (-) TimerEvent: {}
+[3.916550] (-) TimerEvent: {}
+[3.997457] (mam_eurobot_2026) StdoutLine: {'line': b'-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success\n'}
+[4.001520] (mam_eurobot_2026) StdoutLine: {'line': b'-- Found Threads: TRUE  \n'}
+[4.016714] (-) TimerEvent: {}
+[4.067058] (mam_eurobot_2026) StdoutLine: {'line': b'-- Found geometry_msgs: 4.9.0 (/opt/ros/humble/share/geometry_msgs/cmake)\n'}
+[4.095908] (mam_eurobot_2026) StdoutLine: {'line': b'-- Found ros2_control: 2.52.2 (/opt/ros/humble/share/ros2_control/cmake)\n'}
+[4.099846] (mam_eurobot_2026) StdoutLine: {'line': b'-- Found controller_manager: 2.52.2 (/opt/ros/humble/share/controller_manager/cmake)\n'}
+[4.116900] (-) TimerEvent: {}
+[4.217627] (-) TimerEvent: {}
+[4.321800] (-) TimerEvent: {}
+[4.336416] (mam_eurobot_2026) StdoutLine: {'line': b'-- Found gazebo_ros2_control: 0.4.12 (/home/rosdev/eurobot_2026_ws/install/gazebo_ros2_control/share/gazebo_ros2_control/cmake)\n'}
+[4.358929] (mam_eurobot_2026) StdoutLine: {'line': b'-- Found PkgConfig: /usr/bin/pkg-config (found version "0.29.2") \n'}
+[4.362298] (mam_eurobot_2026) StdoutLine: {'line': b"-- Checking for module 'bullet>=2.82'\n"}
+[4.375304] (mam_eurobot_2026) StdoutLine: {'line': b'--   Found bullet, version 3.05\n'}
+[4.421959] (-) TimerEvent: {}
+[4.512931] (mam_eurobot_2026) StdoutLine: {'line': b'-- Found fcl: /usr/include (found suitable version "0.7.0", minimum required is "0.5.0") \n'}
+[4.522127] (-) TimerEvent: {}
+[4.571815] (mam_eurobot_2026) StdoutLine: {'line': b'-- Found assimp: /usr/include (found version "5.2.0") \n'}
+[4.608428] (mam_eurobot_2026) StdoutLine: {'line': b'-- Found DART: /usr/include (Required is at least version "6.6") found components: dart \n'}
+[4.622254] (-) TimerEvent: {}
+[4.661995] (mam_eurobot_2026) StdoutLine: {'line': b'-- Found Boost: /usr/lib/x86_64-linux-gnu/cmake/Boost-1.74.0/BoostConfig.cmake (found suitable version "1.74.0", minimum required is "1.40.0") found components: thread system filesystem program_options regex iostreams date_time \n'}
+[4.698136] (mam_eurobot_2026) StdoutLine: {'line': b'-- Found Protobuf: /usr/lib/x86_64-linux-gnu/libprotobuf.so (found version "3.12.4") \n'}
+[4.716986] (mam_eurobot_2026) StdoutLine: {'line': b'-- Looking for ignition-math6 -- found version 6.15.1\n'}
+[4.722392] (-) TimerEvent: {}
+[4.728032] (mam_eurobot_2026) StdoutLine: {'line': b'-- Searching for dependencies of ignition-math6\n'}
+[4.730494] (mam_eurobot_2026) StdoutLine: {'line': b'-- Looking for OGRE...\n'}
+[4.731763] (mam_eurobot_2026) StdoutLine: {'line': b'-- OGRE_PREFIX_WATCH changed.\n'}
+[4.736472] (mam_eurobot_2026) StdoutLine: {'line': b"-- Checking for module 'OGRE'\n"}
+[4.751981] (mam_eurobot_2026) StdoutLine: {'line': b'--   Found OGRE, version 1.9.0\n'}
+[4.791170] (mam_eurobot_2026) StdoutLine: {'line': b'-- Found Ogre Ghadamon (1.9.0)\n'}
+[4.814600] (mam_eurobot_2026) StdoutLine: {'line': b'-- Found OGRE: optimized;/usr/lib/x86_64-linux-gnu/libOgreMain.so;debug;/usr/lib/x86_64-linux-gnu/libOgreMain.so\n'}
+[4.822564] (-) TimerEvent: {}
+[4.823579] (mam_eurobot_2026) StdoutLine: {'line': b'-- Looking for OGRE_Paging...\n'}
+[4.846960] (mam_eurobot_2026) StdoutLine: {'line': b'-- Found OGRE_Paging: optimized;/usr/lib/x86_64-linux-gnu/libOgrePaging.so;debug;/usr/lib/x86_64-linux-gnu/libOgrePaging.so\n'}
+[4.847732] (mam_eurobot_2026) StdoutLine: {'line': b'-- Looking for OGRE_Terrain...\n'}
+[4.865982] (mam_eurobot_2026) StdoutLine: {'line': b'-- Found OGRE_Terrain: optimized;/usr/lib/x86_64-linux-gnu/libOgreTerrain.so;debug;/usr/lib/x86_64-linux-gnu/libOgreTerrain.so\n'}
+[4.866716] (mam_eurobot_2026) StdoutLine: {'line': b'-- Looking for OGRE_Property...\n'}
+[4.885187] (mam_eurobot_2026) StdoutLine: {'line': b'-- Found OGRE_Property: optimized;/usr/lib/x86_64-linux-gnu/libOgreProperty.so;debug;/usr/lib/x86_64-linux-gnu/libOgreProperty.so\n'}
+[4.886279] (mam_eurobot_2026) StdoutLine: {'line': b'-- Looking for OGRE_RTShaderSystem...\n'}
+[4.907149] (mam_eurobot_2026) StdoutLine: {'line': b'-- Found OGRE_RTShaderSystem: optimized;/usr/lib/x86_64-linux-gnu/libOgreRTShaderSystem.so;debug;/usr/lib/x86_64-linux-gnu/libOgreRTShaderSystem.so\n'}
+[4.908382] (mam_eurobot_2026) StdoutLine: {'line': b'-- Looking for OGRE_Volume...\n'}
+[4.922693] (-) TimerEvent: {}
+[4.926508] (mam_eurobot_2026) StdoutLine: {'line': b'-- Found OGRE_Volume: optimized;/usr/lib/x86_64-linux-gnu/libOgreVolume.so;debug;/usr/lib/x86_64-linux-gnu/libOgreVolume.so\n'}
+[4.927576] (mam_eurobot_2026) StdoutLine: {'line': b'-- Looking for OGRE_Overlay...\n'}
+[4.949252] (mam_eurobot_2026) StdoutLine: {'line': b'-- Found OGRE_Overlay: optimized;/usr/lib/x86_64-linux-gnu/libOgreOverlay.so;debug;/usr/lib/x86_64-linux-gnu/libOgreOverlay.so\n'}
+[5.022815] (-) TimerEvent: {}
+[5.123324] (-) TimerEvent: {}
+[5.223853] (-) TimerEvent: {}
+[5.324318] (-) TimerEvent: {}
+[5.424858] (-) TimerEvent: {}
+[5.525404] (-) TimerEvent: {}
+[5.625891] (-) TimerEvent: {}
+[5.726371] (-) TimerEvent: {}
+[5.826922] (-) TimerEvent: {}
+[5.909062] (mam_eurobot_2026) StdoutLine: {'line': b'-- Looking for ignition-math6 -- found version 6.15.1\n'}
+[5.912838] (mam_eurobot_2026) StdoutLine: {'line': b'-- Looking for ignition-transport8 -- found version 8.2.1\n'}
+[5.913634] (mam_eurobot_2026) StdoutLine: {'line': b'-- Searching for dependencies of ignition-transport8\n'}
+[5.927057] (-) TimerEvent: {}
+[5.935724] (mam_eurobot_2026) StdoutLine: {'line': b'-- Found Protobuf: /usr/lib/x86_64-linux-gnu/libprotobuf.so (found suitable version "3.12.4", minimum required is "3") \n'}
+[5.951587] (mam_eurobot_2026) StdoutLine: {'line': b'-- Config-file not installed for ZeroMQ -- checking for pkg-config\n'}
+[5.956534] (mam_eurobot_2026) StdoutLine: {'line': b"-- Checking for module 'libzmq >= 4'\n"}
+[5.971280] (mam_eurobot_2026) StdoutLine: {'line': b'--   Found libzmq , version 4.3.4\n'}
+[6.013540] (mam_eurobot_2026) StdoutLine: {'line': b'-- Found ZeroMQ: TRUE (Required is at least version "4") \n'}
+[6.020000] (mam_eurobot_2026) StdoutLine: {'line': b"-- Checking for module 'uuid'\n"}
+[6.027191] (-) TimerEvent: {}
+[6.034474] (mam_eurobot_2026) StdoutLine: {'line': b'--   Found uuid, version 2.37.2\n'}
+[6.070166] (mam_eurobot_2026) StdoutLine: {'line': b'-- Found UUID: TRUE  \n'}
+[6.085463] (mam_eurobot_2026) StdoutLine: {'line': b'-- Looking for ignition-msgs5 -- found version 5.8.1\n'}
+[6.087021] (mam_eurobot_2026) StdoutLine: {'line': b'-- Searching for dependencies of ignition-msgs5\n'}
+[6.109402] (mam_eurobot_2026) StdoutLine: {'line': b'-- Looking for ignition-math6 -- found version 6.15.1\n'}
+[6.114949] (mam_eurobot_2026) StdoutLine: {'line': b"-- Checking for module 'tinyxml2'\n"}
+[6.127312] (-) TimerEvent: {}
+[6.130584] (mam_eurobot_2026) StdoutLine: {'line': b'--   Found tinyxml2, version 9.0.0\n'}
+[6.173221] (mam_eurobot_2026) StdoutLine: {'line': b'-- Looking for ignition-msgs5 -- found version 5.8.1\n'}
+[6.179492] (mam_eurobot_2026) StdoutLine: {'line': b'-- Looking for ignition-common3 -- found version 3.14.0\n'}
+[6.180787] (mam_eurobot_2026) StdoutLine: {'line': b'-- Searching for dependencies of ignition-common3\n'}
+[6.181675] (mam_eurobot_2026) StdoutLine: {'line': b'-- Looking for dlfcn.h - found\n'}
+[6.182332] (mam_eurobot_2026) StdoutLine: {'line': b'-- Looking for libdl - found\n'}
+[6.183040] (mam_eurobot_2026) StdoutLine: {'line': b'-- Found DL: TRUE  \n'}
+[6.198967] (mam_eurobot_2026) StdoutLine: {'line': b'-- Found tinyobjloader: /usr/lib/x86_64-linux-gnu/cmake/tinyobjloader/tinyobjloader-config.cmake (found version "2.0.0") \n'}
+[6.199888] (mam_eurobot_2026) StdoutLine: {'line': b'-- Searching for <ignition-common3> component [graphics]\n'}
+[6.203733] (mam_eurobot_2026) StdoutLine: {'line': b'-- Looking for ignition-common3-graphics -- found version 3.14.0\n'}
+[6.204775] (mam_eurobot_2026) StdoutLine: {'line': b'-- Searching for dependencies of ignition-common3-graphics\n'}
+[6.205528] (mam_eurobot_2026) StdoutLine: {'line': b'-- Looking for ignition-math6 -- found version 6.15.1\n'}
+[6.209422] (mam_eurobot_2026) StdoutLine: {'line': b'-- Looking for ignition-fuel_tools4 -- found version 4.4.0\n'}
+[6.210164] (mam_eurobot_2026) StdoutLine: {'line': b'-- Searching for dependencies of ignition-fuel_tools4\n'}
+[6.227438] (-) TimerEvent: {}
+[6.307114] (mam_eurobot_2026) StdoutLine: {'line': b'-- Found CURL: /usr/lib/x86_64-linux-gnu/libcurl.so (found version "7.81.0")  \n'}
+[6.318830] (mam_eurobot_2026) StdoutLine: {'line': b"-- Checking for module 'jsoncpp'\n"}
+[6.327572] (-) TimerEvent: {}
+[6.333991] (mam_eurobot_2026) StdoutLine: {'line': b'--   Found jsoncpp, version 1.9.5\n'}
+[6.370658] (mam_eurobot_2026) StdoutLine: {'line': b'-- Found JSONCPP: TRUE  \n'}
+[6.376956] (mam_eurobot_2026) StdoutLine: {'line': b"-- Checking for module 'libzip'\n"}
+[6.391547] (mam_eurobot_2026) StdoutLine: {'line': b'--   Found libzip, version 1.7.3\n'}
+[6.427775] (-) TimerEvent: {}
+[6.428277] (mam_eurobot_2026) StdoutLine: {'line': b'-- Found ZIP: TRUE  \n'}
+[6.429610] (mam_eurobot_2026) StdoutLine: {'line': b'-- Looking for ignition-common3 -- found version 3.14.0\n'}
+[6.430505] (mam_eurobot_2026) StdoutLine: {'line': b'-- Looking for ignition-math6 -- found version 6.15.1\n'}
+[6.431301] (mam_eurobot_2026) StdoutLine: {'line': b'-- Looking for ignition-msgs5 -- found version 5.8.1\n'}
+[6.435183] (mam_eurobot_2026) StdoutLine: {'line': b'-- Gazebo version: 11.10\n'}
+[6.436162] (mam_eurobot_2026) StdoutLine: {'line': b"-- Checking for module 'tbb'\n"}
+[6.461567] (mam_eurobot_2026) StdoutLine: {'line': b'--   Found tbb, version 2021.5.0\n'}
+[6.514699] (mam_eurobot_2026) StdoutLine: {'line': b'-- Found ament_lint_auto: 0.12.14 (/opt/ros/humble/share/ament_lint_auto/cmake)\n'}
+[6.527896] (-) TimerEvent: {}
+[6.628531] (-) TimerEvent: {}
+[6.729263] (-) TimerEvent: {}
+[6.829830] (-) TimerEvent: {}
+[6.930312] (-) TimerEvent: {}
+[7.030931] (-) TimerEvent: {}
+[7.131417] (-) TimerEvent: {}
+[7.231922] (-) TimerEvent: {}
+[7.332439] (-) TimerEvent: {}
+[7.433171] (-) TimerEvent: {}
+[7.535667] (-) TimerEvent: {}
+[7.636196] (-) TimerEvent: {}
+[7.736699] (-) TimerEvent: {}
+[7.837181] (-) TimerEvent: {}
+[7.937684] (-) TimerEvent: {}
+[8.038137] (-) TimerEvent: {}
+[8.138690] (-) TimerEvent: {}
+[8.239194] (-) TimerEvent: {}
+[8.339679] (-) TimerEvent: {}
+[8.440258] (-) TimerEvent: {}
+[8.540778] (-) TimerEvent: {}
+[8.641371] (-) TimerEvent: {}
+[8.741886] (-) TimerEvent: {}
+[8.842366] (-) TimerEvent: {}
+[8.942920] (-) TimerEvent: {}
+[9.043436] (-) TimerEvent: {}
+[9.143928] (-) TimerEvent: {}
+[9.244397] (-) TimerEvent: {}
+[9.344871] (-) TimerEvent: {}
+[9.375725] (mam_eurobot_2026) StdoutLine: {'line': b"-- Added test 'cppcheck' to perform static code analysis on C / C++ code\n"}
+[9.376448] (mam_eurobot_2026) StdoutLine: {'line': b'-- Configured cppcheck include dirs: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/include\n'}
+[9.377096] (mam_eurobot_2026) StdoutLine: {'line': b'-- Configured cppcheck exclude dirs and/or files: \n'}
+[9.445009] (-) TimerEvent: {}
+[9.545586] (-) TimerEvent: {}
+[9.646152] (-) TimerEvent: {}
+[9.673736] (mam_eurobot_2026) StdoutLine: {'line': b"-- Added test 'flake8' to check Python code syntax and style conventions\n"}
+[9.746318] (-) TimerEvent: {}
+[9.846893] (-) TimerEvent: {}
+[9.947468] (-) TimerEvent: {}
+[10.047918] (-) TimerEvent: {}
+[10.148406] (-) TimerEvent: {}
+[10.248879] (-) TimerEvent: {}
+[10.256921] (mam_eurobot_2026) StdoutLine: {'line': b"-- Added test 'lint_cmake' to check CMake code style\n"}
+[10.349012] (-) TimerEvent: {}
+[10.449554] (-) TimerEvent: {}
+[10.550093] (-) TimerEvent: {}
+[10.556076] (mam_eurobot_2026) StdoutLine: {'line': b"-- Added test 'pep257' to check Python code against some of the docstring style conventions in PEP 257\n"}
+[10.650229] (-) TimerEvent: {}
+[10.752705] (-) TimerEvent: {}
+[10.853236] (-) TimerEvent: {}
+[10.953734] (-) TimerEvent: {}
+[11.054206] (-) TimerEvent: {}
+[11.154694] (-) TimerEvent: {}
+[11.255206] (-) TimerEvent: {}
+[11.355707] (-) TimerEvent: {}
+[11.456180] (-) TimerEvent: {}
+[11.556695] (-) TimerEvent: {}
+[11.657203] (-) TimerEvent: {}
+[11.757684] (-) TimerEvent: {}
+[11.858133] (-) TimerEvent: {}
+[11.958643] (-) TimerEvent: {}
+[12.059187] (-) TimerEvent: {}
+[12.159673] (-) TimerEvent: {}
+[12.260192] (-) TimerEvent: {}
+[12.360718] (-) TimerEvent: {}
+[12.461265] (-) TimerEvent: {}
+[12.561879] (-) TimerEvent: {}
+[12.662452] (-) TimerEvent: {}
+[12.762956] (-) TimerEvent: {}
+[12.863409] (-) TimerEvent: {}
+[12.910693] (mam_eurobot_2026) StdoutLine: {'line': b"-- Added test 'uncrustify' to check C / C++ code style\n"}
+[12.911423] (mam_eurobot_2026) StdoutLine: {'line': b'-- Configured uncrustify additional arguments: \n'}
+[12.963541] (-) TimerEvent: {}
+[13.064093] (-) TimerEvent: {}
+[13.164590] (-) TimerEvent: {}
+[13.204223] (mam_eurobot_2026) StdoutLine: {'line': b"-- Added test 'xmllint' to check XML markup files\n"}
+[13.264747] (-) TimerEvent: {}
+[13.295657] (mam_eurobot_2026) StdoutLine: {'line': b'-- Configuring done\n'}
+[13.364873] (-) TimerEvent: {}
+[13.465442] (-) TimerEvent: {}
+[13.566045] (-) TimerEvent: {}
+[13.661386] (mam_eurobot_2026) StdoutLine: {'line': b'-- Generating done\n'}
+[13.666175] (-) TimerEvent: {}
+[13.766791] (-) TimerEvent: {}
+[13.867361] (-) TimerEvent: {}
+[13.930103] (mam_eurobot_2026) StdoutLine: {'line': b'-- Build files have been written to: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/build/mam_eurobot_2026\n'}
+[13.944385] (mam_eurobot_2026) CommandEnded: {'returncode': 0}
+[13.955923] (mam_eurobot_2026) JobProgress: {'identifier': 'mam_eurobot_2026', 'progress': 'build'}
+[13.956113] (mam_eurobot_2026) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/build/mam_eurobot_2026', '--', '-j8', '-l8'], 'cwd': '/home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/build/mam_eurobot_2026', 'env': OrderedDict([('GZ_SIM_SYSTEM_PLUGIN_PATH', ':/opt/ros/humble/lib:/opt/ros/humble/lib:/opt/ros/humble/lib:/opt/ros/humble/lib'), ('PYTHON_BASIC_REPL', '1'), ('HOSTNAME', 'docker-desktop'), ('GIT_ASKPASS', '/vscode/vscode-server/bin/linux-x64/ac4cbdf48759c7d8c3eb91ffe6bb04316e263c57/extensions/git/dist/askpass.sh'), ('PIPX_HOME', '/usr/local/py-utils'), ('SHLVL', '2'), ('LIBGL_ALWAYS_SOFTWARE', '1'), ('LD_LIBRARY_PATH', '/home/rosdev/eurobot_2026_ws/install/gazebo_ros2_control/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/vscode/vscode-server/bin/linux-x64/ac4cbdf48759c7d8c3eb91ffe6bb04316e263c57/bin/helpers/browser.sh'), ('HOME', '/home/rosdev'), ('TERM_PROGRAM_VERSION', '1.106.0'), ('VSCODE_IPC_HOOK_CLI', '/tmp/vscode-ipc-bd842f23-8648-443b-b52b-936353471a96.sock'), ('PIPX_BIN_DIR', '/usr/local/py-utils/bin'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/vscode/vscode-server/bin/linux-x64/ac4cbdf48759c7d8c3eb91ffe6bb04316e263c57/extensions/git/dist/askpass-main.js'), ('VSCODE_GIT_ASKPASS_NODE', '/vscode/vscode-server/bin/linux-x64/ac4cbdf48759c7d8c3eb91ffe6bb04316e263c57/node'), ('PYDEVD_DISABLE_FILE_VALIDATION', '1'), ('BUNDLED_DEBUGPY_PATH', '/home/rosdev/.vscode-server/extensions/ms-python.debugpy-2025.16.0-linux-x64/bundled/libs/debugpy'), ('VSCODE_PYTHON_AUTOACTIVATE_GUARD', '1'), ('COLORTERM', 'truecolor'), ('REMOTE_CONTAINERS', 'true'), ('PYTHON_PATH', '/usr/local/python/current'), ('COLCON_PREFIX_PATH', '/home/rosdev/eurobot_2026_ws/install'), ('ROS_DISTRO', 'humble'), ('REMOTE_CONTAINERS_IPC', '/tmp/vscode-remote-containers-ipc-13613be7-6e11-4df7-abd6-264383e09841.sock'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('TERM', 'xterm-256color'), ('ROS_LOCALHOST_ONLY', '1'), ('PATH', '/vscode/vscode-server/bin/linux-x64/ac4cbdf48759c7d8c3eb91ffe6bb04316e263c57/bin/remote-cli:/home/rosdev/.local/bin:/opt/ros/humble/bin:/usr/local/python/current/bin:/usr/local/py-utils/bin:/usr/local/jupyter:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/rosdev/.vscode-server/extensions/ms-python.debugpy-2025.16.0-linux-x64/bundled/scripts/noConfigScripts'), ('REMOTE_CONTAINERS_SOCKETS', '[]'), ('VSCODE_DEBUGPY_ADAPTER_ENDPOINTS', '/home/rosdev/.vscode-server/extensions/ms-python.debugpy-2025.16.0-linux-x64/.noConfigDebugAdapterEndpoints/endpoint-3bed15f66c7b0abf.txt'), ('LANG', 'C.UTF-8'), ('PYTHONSTARTUP', '/home/rosdev/.vscode-server/data/User/workspaceStorage/9028281e833d84b891d60aab59ca08bd/ms-python.python/pythonrc.py'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/tmp/vscode-git-61a2087a71.sock'), ('TERM_PROGRAM', 'vscode'), ('ROS_DOMAIN_ID', '0'), ('AMENT_PREFIX_PATH', '/home/rosdev/eurobot_2026_ws/install/mam_eurobot_2026:/home/rosdev/eurobot_2026_ws/install/gazebo_ros2_control_demos:/home/rosdev/eurobot_2026_ws/install/gazebo_ros2_control:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/build/mam_eurobot_2026'), ('LC_ALL', 'C.UTF-8'), ('GAZEBO_PLUGIN_PATH', ':/opt/ros/humble/lib:/opt/ros/humble/lib:/opt/ros/humble/lib:/opt/ros/humble/lib'), ('PYTHONPATH', '/home/rosdev/eurobot_2026_ws/install/mam_eurobot_2026/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/home/rosdev/eurobot_2026_ws/install/mam_eurobot_2026:/home/rosdev/eurobot_2026_ws/install/gazebo_ros2_control_demos:/home/rosdev/eurobot_2026_ws/install/gazebo_ros2_control:/opt/ros/humble')]), 'shell': False}
+[13.967480] (-) TimerEvent: {}
+[14.067967] (-) TimerEvent: {}
+[14.127685] (mam_eurobot_2026) StdoutLine: {'line': b'[ 50%] \x1b[32mBuilding CXX object CMakeFiles/cpp_test.dir/src/cpp_test.cpp.o\x1b[0m\n'}
+[14.165590] (mam_eurobot_2026) StdoutLine: {'line': b'[ 50%] Built target ament_cmake_python_copy_mam_eurobot_2026\n'}
+[14.168089] (-) TimerEvent: {}
+[14.268627] (-) TimerEvent: {}
+[14.369373] (-) TimerEvent: {}
+[14.469919] (-) TimerEvent: {}
+[14.493777] (mam_eurobot_2026) StdoutLine: {'line': b'running egg_info\n'}
+[14.495174] (mam_eurobot_2026) StdoutLine: {'line': b'creating mam_eurobot_2026.egg-info\n'}
+[14.497730] (mam_eurobot_2026) StdoutLine: {'line': b'writing mam_eurobot_2026.egg-info/PKG-INFO\n'}
+[14.502062] (mam_eurobot_2026) StdoutLine: {'line': b'writing dependency_links to mam_eurobot_2026.egg-info/dependency_links.txt\n'}
+[14.508072] (mam_eurobot_2026) StdoutLine: {'line': b'writing top-level names to mam_eurobot_2026.egg-info/top_level.txt\n'}
+[14.512307] (mam_eurobot_2026) StdoutLine: {'line': b"writing manifest file 'mam_eurobot_2026.egg-info/SOURCES.txt'\n"}
+[14.531121] (mam_eurobot_2026) StdoutLine: {'line': b"reading manifest file 'mam_eurobot_2026.egg-info/SOURCES.txt'\n"}
+[14.550186] (mam_eurobot_2026) StdoutLine: {'line': b"writing manifest file 'mam_eurobot_2026.egg-info/SOURCES.txt'\n"}
+[14.570052] (-) TimerEvent: {}
+[14.590827] (mam_eurobot_2026) StdoutLine: {'line': b'[ 50%] Built target ament_cmake_python_build_mam_eurobot_2026_egg\n'}
+[14.670196] (-) TimerEvent: {}
+[14.770873] (-) TimerEvent: {}
+[14.871651] (-) TimerEvent: {}
+[14.972577] (-) TimerEvent: {}
+[15.073307] (-) TimerEvent: {}
+[15.174166] (-) TimerEvent: {}
+[15.274981] (-) TimerEvent: {}
+[15.375855] (-) TimerEvent: {}
+[15.476532] (-) TimerEvent: {}
+[15.577403] (-) TimerEvent: {}
+[15.678037] (-) TimerEvent: {}
+[15.778913] (-) TimerEvent: {}
+[15.880163] (-) TimerEvent: {}
+[15.981000] (-) TimerEvent: {}
+[16.081788] (-) TimerEvent: {}
+[16.182648] (-) TimerEvent: {}
+[16.283438] (-) TimerEvent: {}
+[16.384301] (-) TimerEvent: {}
+[16.485078] (-) TimerEvent: {}
+[16.585915] (-) TimerEvent: {}
+[16.686612] (-) TimerEvent: {}
+[16.787383] (-) TimerEvent: {}
+[16.887993] (-) TimerEvent: {}
+[16.988785] (-) TimerEvent: {}
+[17.089530] (-) TimerEvent: {}
+[17.190362] (-) TimerEvent: {}
+[17.291101] (-) TimerEvent: {}
+[17.391905] (-) TimerEvent: {}
+[17.492514] (-) TimerEvent: {}
+[17.593420] (-) TimerEvent: {}
+[17.694122] (-) TimerEvent: {}
+[17.794983] (-) TimerEvent: {}
+[17.895685] (-) TimerEvent: {}
+[17.996592] (-) TimerEvent: {}
+[18.097285] (-) TimerEvent: {}
+[18.198086] (-) TimerEvent: {}
+[18.298801] (-) TimerEvent: {}
+[18.399651] (-) TimerEvent: {}
+[18.500406] (-) TimerEvent: {}
+[18.601187] (-) TimerEvent: {}
+[18.701897] (-) TimerEvent: {}
+[18.802750] (-) TimerEvent: {}
+[18.903433] (-) TimerEvent: {}
+[19.004201] (-) TimerEvent: {}
+[19.105115] (-) TimerEvent: {}
+[19.205950] (-) TimerEvent: {}
+[19.306584] (-) TimerEvent: {}
+[19.407331] (-) TimerEvent: {}
+[19.507829] (-) TimerEvent: {}
+[19.608340] (-) TimerEvent: {}
+[19.708816] (-) TimerEvent: {}
+[19.809269] (-) TimerEvent: {}
+[19.909736] (-) TimerEvent: {}
+[19.924119] (mam_eurobot_2026) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking CXX executable cpp_test\x1b[0m\n'}
+[20.009870] (-) TimerEvent: {}
+[20.110367] (-) TimerEvent: {}
+[20.210841] (-) TimerEvent: {}
+[20.311322] (-) TimerEvent: {}
+[20.411997] (-) TimerEvent: {}
+[20.512556] (-) TimerEvent: {}
+[20.613077] (-) TimerEvent: {}
+[20.713598] (-) TimerEvent: {}
+[20.814090] (-) TimerEvent: {}
+[20.914617] (-) TimerEvent: {}
+[21.015198] (-) TimerEvent: {}
+[21.115715] (-) TimerEvent: {}
+[21.216214] (-) TimerEvent: {}
+[21.316701] (-) TimerEvent: {}
+[21.361791] (mam_eurobot_2026) StdoutLine: {'line': b'[100%] Built target cpp_test\n'}
+[21.388571] (mam_eurobot_2026) CommandEnded: {'returncode': 0}
+[21.404166] (mam_eurobot_2026) JobProgress: {'identifier': 'mam_eurobot_2026', 'progress': 'install'}
+[21.416828] (-) TimerEvent: {}
+[21.418824] (mam_eurobot_2026) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/build/mam_eurobot_2026'], 'cwd': '/home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/build/mam_eurobot_2026', 'env': OrderedDict([('GZ_SIM_SYSTEM_PLUGIN_PATH', ':/opt/ros/humble/lib:/opt/ros/humble/lib:/opt/ros/humble/lib:/opt/ros/humble/lib'), ('PYTHON_BASIC_REPL', '1'), ('HOSTNAME', 'docker-desktop'), ('GIT_ASKPASS', '/vscode/vscode-server/bin/linux-x64/ac4cbdf48759c7d8c3eb91ffe6bb04316e263c57/extensions/git/dist/askpass.sh'), ('PIPX_HOME', '/usr/local/py-utils'), ('SHLVL', '2'), ('LIBGL_ALWAYS_SOFTWARE', '1'), ('LD_LIBRARY_PATH', '/home/rosdev/eurobot_2026_ws/install/gazebo_ros2_control/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/vscode/vscode-server/bin/linux-x64/ac4cbdf48759c7d8c3eb91ffe6bb04316e263c57/bin/helpers/browser.sh'), ('HOME', '/home/rosdev'), ('TERM_PROGRAM_VERSION', '1.106.0'), ('VSCODE_IPC_HOOK_CLI', '/tmp/vscode-ipc-bd842f23-8648-443b-b52b-936353471a96.sock'), ('PIPX_BIN_DIR', '/usr/local/py-utils/bin'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/vscode/vscode-server/bin/linux-x64/ac4cbdf48759c7d8c3eb91ffe6bb04316e263c57/extensions/git/dist/askpass-main.js'), ('VSCODE_GIT_ASKPASS_NODE', '/vscode/vscode-server/bin/linux-x64/ac4cbdf48759c7d8c3eb91ffe6bb04316e263c57/node'), ('PYDEVD_DISABLE_FILE_VALIDATION', '1'), ('BUNDLED_DEBUGPY_PATH', '/home/rosdev/.vscode-server/extensions/ms-python.debugpy-2025.16.0-linux-x64/bundled/libs/debugpy'), ('VSCODE_PYTHON_AUTOACTIVATE_GUARD', '1'), ('COLORTERM', 'truecolor'), ('REMOTE_CONTAINERS', 'true'), ('PYTHON_PATH', '/usr/local/python/current'), ('COLCON_PREFIX_PATH', '/home/rosdev/eurobot_2026_ws/install'), ('ROS_DISTRO', 'humble'), ('REMOTE_CONTAINERS_IPC', '/tmp/vscode-remote-containers-ipc-13613be7-6e11-4df7-abd6-264383e09841.sock'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('TERM', 'xterm-256color'), ('ROS_LOCALHOST_ONLY', '1'), ('PATH', '/vscode/vscode-server/bin/linux-x64/ac4cbdf48759c7d8c3eb91ffe6bb04316e263c57/bin/remote-cli:/home/rosdev/.local/bin:/opt/ros/humble/bin:/usr/local/python/current/bin:/usr/local/py-utils/bin:/usr/local/jupyter:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/rosdev/.vscode-server/extensions/ms-python.debugpy-2025.16.0-linux-x64/bundled/scripts/noConfigScripts'), ('REMOTE_CONTAINERS_SOCKETS', '[]'), ('VSCODE_DEBUGPY_ADAPTER_ENDPOINTS', '/home/rosdev/.vscode-server/extensions/ms-python.debugpy-2025.16.0-linux-x64/.noConfigDebugAdapterEndpoints/endpoint-3bed15f66c7b0abf.txt'), ('LANG', 'C.UTF-8'), ('PYTHONSTARTUP', '/home/rosdev/.vscode-server/data/User/workspaceStorage/9028281e833d84b891d60aab59ca08bd/ms-python.python/pythonrc.py'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/tmp/vscode-git-61a2087a71.sock'), ('TERM_PROGRAM', 'vscode'), ('ROS_DOMAIN_ID', '0'), ('AMENT_PREFIX_PATH', '/home/rosdev/eurobot_2026_ws/install/mam_eurobot_2026:/home/rosdev/eurobot_2026_ws/install/gazebo_ros2_control_demos:/home/rosdev/eurobot_2026_ws/install/gazebo_ros2_control:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/build/mam_eurobot_2026'), ('LC_ALL', 'C.UTF-8'), ('GAZEBO_PLUGIN_PATH', ':/opt/ros/humble/lib:/opt/ros/humble/lib:/opt/ros/humble/lib:/opt/ros/humble/lib'), ('PYTHONPATH', '/home/rosdev/eurobot_2026_ws/install/mam_eurobot_2026/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/home/rosdev/eurobot_2026_ws/install/mam_eurobot_2026:/home/rosdev/eurobot_2026_ws/install/gazebo_ros2_control_demos:/home/rosdev/eurobot_2026_ws/install/gazebo_ros2_control:/opt/ros/humble')]), 'shell': False}
+[21.431791] (mam_eurobot_2026) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[21.447699] (mam_eurobot_2026) StdoutLine: {'line': b'-- Installing: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/lib/mam_eurobot_2026/cpp_test\n'}
+[21.516965] (-) TimerEvent: {}
+[21.575983] (mam_eurobot_2026) StdoutLine: {'line': b'-- Set runtime path of "/home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/lib/mam_eurobot_2026/cpp_test" to ""\n'}
+[21.584454] (mam_eurobot_2026) StdoutLine: {'line': b'-- Installing: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/launch\n'}
+[21.617175] (-) TimerEvent: {}
+[21.638099] (mam_eurobot_2026) StdoutLine: {'line': b'-- Installing: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/launch/arena.launch.py\n'}
+[21.717303] (-) TimerEvent: {}
+[21.736517] (mam_eurobot_2026) StdoutLine: {'line': b'-- Installing: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/launch/arena.launch.xml\n'}
+[21.812025] (mam_eurobot_2026) StdoutLine: {'line': b'-- Installing: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/launch/camera_bridge.launch.py\n'}
+[21.817426] (-) TimerEvent: {}
+[21.863916] (mam_eurobot_2026) StdoutLine: {'line': b'-- Installing: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/launch/test_world.launch.py\n'}
+[21.909286] (mam_eurobot_2026) StdoutLine: {'line': b'-- Installing: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/worlds\n'}
+[21.917536] (-) TimerEvent: {}
+[21.929161] (mam_eurobot_2026) StdoutLine: {'line': b'-- Installing: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/worlds/arena_world.sdf\n'}
+[22.002475] (mam_eurobot_2026) StdoutLine: {'line': b'-- Installing: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/models\n'}
+[22.017673] (-) TimerEvent: {}
+[22.020655] (mam_eurobot_2026) StdoutLine: {'line': b'-- Installing: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/models/aruco\n'}
+[22.047548] (mam_eurobot_2026) StdoutLine: {'line': b'-- Installing: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/models/aruco/aruco_36.png\n'}
+[22.117804] (-) TimerEvent: {}
+[22.123023] (mam_eurobot_2026) StdoutLine: {'line': b'-- Installing: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/models/aruco/aruco_47.png\n'}
+[22.194197] (mam_eurobot_2026) StdoutLine: {'line': b'-- Installing: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/models/crate\n'}
+[22.217918] (-) TimerEvent: {}
+[22.220905] (mam_eurobot_2026) StdoutLine: {'line': b'-- Installing: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/models/crate/model.config\n'}
+[22.290223] (mam_eurobot_2026) StdoutLine: {'line': b'-- Installing: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/models/crate/model.sdf\n'}
+[22.318074] (-) TimerEvent: {}
+[22.370438] (mam_eurobot_2026) StdoutLine: {'line': b'-- Installing: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/models/crate_blue\n'}
+[22.395898] (mam_eurobot_2026) StdoutLine: {'line': b'-- Installing: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/models/crate_blue/model.config\n'}
+[22.418199] (-) TimerEvent: {}
+[22.464190] (mam_eurobot_2026) StdoutLine: {'line': b'-- Installing: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/models/crate_blue/model.sdf\n'}
+[22.518363] (-) TimerEvent: {}
+[22.546994] (mam_eurobot_2026) StdoutLine: {'line': b'-- Installing: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/models/crate_yellow\n'}
+[22.570809] (mam_eurobot_2026) StdoutLine: {'line': b'-- Installing: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/models/crate_yellow/model.config\n'}
+[22.618507] (-) TimerEvent: {}
+[22.638904] (mam_eurobot_2026) StdoutLine: {'line': b'-- Installing: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/models/crate_yellow/model.sdf\n'}
+[22.718135] (mam_eurobot_2026) StdoutLine: {'line': b'-- Installing: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/models/mat\n'}
+[22.718903] (-) TimerEvent: {}
+[22.744750] (mam_eurobot_2026) StdoutLine: {'line': b'-- Installing: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/models/mat/mat.png\n'}
+[22.819042] (-) TimerEvent: {}
+[22.919514] (-) TimerEvent: {}
+[23.019975] (-) TimerEvent: {}
+[23.120454] (-) TimerEvent: {}
+[23.220928] (-) TimerEvent: {}
+[23.321439] (-) TimerEvent: {}
+[23.351495] (mam_eurobot_2026) StdoutLine: {'line': b'-- Installing: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/models/mat/model.config\n'}
+[23.418403] (mam_eurobot_2026) StdoutLine: {'line': b'-- Installing: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/models/mat/model.sdf\n'}
+[23.421528] (-) TimerEvent: {}
+[23.490657] (mam_eurobot_2026) StdoutLine: {'line': b'-- Installing: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/models/simple_robot\n'}
+[23.515290] (mam_eurobot_2026) StdoutLine: {'line': b'-- Installing: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/models/simple_robot/model.config\n'}
+[23.521636] (-) TimerEvent: {}
+[23.580423] (mam_eurobot_2026) StdoutLine: {'line': b'-- Installing: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/models/simple_robot/model.sdf\n'}
+[23.621778] (-) TimerEvent: {}
+[23.652035] (mam_eurobot_2026) StdoutLine: {'line': b'-- Installing: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/urdf\n'}
+[23.671014] (mam_eurobot_2026) StdoutLine: {'line': b'-- Installing: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/urdf/four_wheel_robot.xacro\n'}
+[23.721902] (-) TimerEvent: {}
+[23.729578] (mam_eurobot_2026) StdoutLine: {'line': b'-- Installing: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/config\n'}
+[23.750631] (mam_eurobot_2026) StdoutLine: {'line': b'-- Installing: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/config/mecanum_drive_controller.yaml\n'}
+[23.802685] (mam_eurobot_2026) StdoutLine: {'line': b'-- Up-to-date: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/urdf/four_wheel_robot.xacro\n'}
+[23.822017] (-) TimerEvent: {}
+[23.834915] (mam_eurobot_2026) StdoutLine: {'line': b'-- Installing: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/environment/pythonpath.sh\n'}
+[23.885599] (mam_eurobot_2026) StdoutLine: {'line': b'-- Installing: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/environment/pythonpath.dsv\n'}
+[23.922161] (-) TimerEvent: {}
+[23.929068] (mam_eurobot_2026) StdoutLine: {'line': b'-- Installing: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/local/lib/python3.10/dist-packages/mam_eurobot_2026-0.0.0-py3.10.egg-info\n'}
+[23.961365] (mam_eurobot_2026) StdoutLine: {'line': b'-- Installing: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/local/lib/python3.10/dist-packages/mam_eurobot_2026-0.0.0-py3.10.egg-info/dependency_links.txt\n'}
+[24.022274] (-) TimerEvent: {}
+[24.027496] (mam_eurobot_2026) StdoutLine: {'line': b'-- Installing: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/local/lib/python3.10/dist-packages/mam_eurobot_2026-0.0.0-py3.10.egg-info/PKG-INFO\n'}
+[24.094042] (mam_eurobot_2026) StdoutLine: {'line': b'-- Installing: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/local/lib/python3.10/dist-packages/mam_eurobot_2026-0.0.0-py3.10.egg-info/SOURCES.txt\n'}
+[24.122418] (-) TimerEvent: {}
+[24.201710] (mam_eurobot_2026) StdoutLine: {'line': b'-- Installing: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/local/lib/python3.10/dist-packages/mam_eurobot_2026-0.0.0-py3.10.egg-info/top_level.txt\n'}
+[24.222551] (-) TimerEvent: {}
+[24.261951] (mam_eurobot_2026) StdoutLine: {'line': b'-- Installing: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/local/lib/python3.10/dist-packages/mam_eurobot_2026\n'}
+[24.289733] (mam_eurobot_2026) StdoutLine: {'line': b'-- Installing: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/local/lib/python3.10/dist-packages/mam_eurobot_2026/py_test.py\n'}
+[24.322693] (-) TimerEvent: {}
+[24.350693] (mam_eurobot_2026) StdoutLine: {'line': b'-- Installing: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/local/lib/python3.10/dist-packages/mam_eurobot_2026/__init__.py\n'}
+[24.422802] (-) TimerEvent: {}
+[24.523300] (-) TimerEvent: {}
+[24.526466] (mam_eurobot_2026) StdoutLine: {'line': b"Listing '/home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/local/lib/python3.10/dist-packages/mam_eurobot_2026'...\n"}
+[24.527256] (mam_eurobot_2026) StdoutLine: {'line': b"Compiling '/home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/local/lib/python3.10/dist-packages/mam_eurobot_2026/__init__.py'...\n"}
+[24.527970] (mam_eurobot_2026) StdoutLine: {'line': b"Compiling '/home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/local/lib/python3.10/dist-packages/mam_eurobot_2026/py_test.py'...\n"}
+[24.543608] (mam_eurobot_2026) StdoutLine: {'line': b'-- Installing: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/lib/mam_eurobot_2026/py_test.py\n'}
+[24.605504] (mam_eurobot_2026) StdoutLine: {'line': b'-- Installing: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/ament_index/resource_index/package_run_dependencies/mam_eurobot_2026\n'}
+[24.623439] (-) TimerEvent: {}
+[24.687682] (mam_eurobot_2026) StdoutLine: {'line': b'-- Installing: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/ament_index/resource_index/parent_prefix_path/mam_eurobot_2026\n'}
+[24.723550] (-) TimerEvent: {}
+[24.754706] (mam_eurobot_2026) StdoutLine: {'line': b'-- Installing: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/environment/ament_prefix_path.sh\n'}
+[24.798999] (mam_eurobot_2026) StdoutLine: {'line': b'-- Installing: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/environment/ament_prefix_path.dsv\n'}
+[24.823670] (-) TimerEvent: {}
+[24.847706] (mam_eurobot_2026) StdoutLine: {'line': b'-- Installing: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/environment/path.sh\n'}
+[24.902882] (mam_eurobot_2026) StdoutLine: {'line': b'-- Installing: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/environment/path.dsv\n'}
+[24.923836] (-) TimerEvent: {}
+[24.952408] (mam_eurobot_2026) StdoutLine: {'line': b'-- Installing: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/local_setup.bash\n'}
+[24.994651] (mam_eurobot_2026) StdoutLine: {'line': b'-- Installing: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/local_setup.sh\n'}
+[25.023955] (-) TimerEvent: {}
+[25.040566] (mam_eurobot_2026) StdoutLine: {'line': b'-- Installing: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/local_setup.zsh\n'}
+[25.084484] (mam_eurobot_2026) StdoutLine: {'line': b'-- Installing: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/local_setup.dsv\n'}
+[25.124093] (-) TimerEvent: {}
+[25.127057] (mam_eurobot_2026) StdoutLine: {'line': b'-- Installing: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/package.dsv\n'}
+[25.189730] (mam_eurobot_2026) StdoutLine: {'line': b'-- Installing: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/ament_index/resource_index/packages/mam_eurobot_2026\n'}
+[25.224235] (-) TimerEvent: {}
+[25.261213] (mam_eurobot_2026) StdoutLine: {'line': b'-- Installing: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/cmake/mam_eurobot_2026Config.cmake\n'}
+[25.309224] (mam_eurobot_2026) StdoutLine: {'line': b'-- Installing: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/cmake/mam_eurobot_2026Config-version.cmake\n'}
+[25.324360] (-) TimerEvent: {}
+[25.357071] (mam_eurobot_2026) StdoutLine: {'line': b'-- Installing: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/package.xml\n'}
+[25.392302] (mam_eurobot_2026) CommandEnded: {'returncode': 0}
+[25.424527] (-) TimerEvent: {}
+[25.525084] (-) TimerEvent: {}
+[25.625586] (-) TimerEvent: {}
+[25.726165] (-) TimerEvent: {}
+[25.826659] (-) TimerEvent: {}
+[25.927249] (-) TimerEvent: {}
+[25.964103] (mam_eurobot_2026) JobEnded: {'identifier': 'mam_eurobot_2026', 'rc': 0}
+[25.972001] (-) EventReactorShutdown: {}

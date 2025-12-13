@@ -104,6 +104,26 @@ def generate_launch_description():
                     executable='spawner',
                     arguments=['mecanum_drive_controller'],
                     output='screen'
+                ),
+                Node(
+                    package='controller_manager',
+                    executable='spawner',
+                    arguments=['gripper_controller'],
+                    output='screen'
+                )
+            ]
+        ),
+        TimerAction(
+            period=12.0,
+            actions=[
+                Node(
+                    package='mam_eurobot_2026',
+                    executable='gripper_control_node.py',
+                    name='gripper_control',
+                    output='screen',
+                    parameters=[
+                        {'close_distance': 0.1025}
+                    ]
                 )
             ]
         ),

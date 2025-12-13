@@ -1,0 +1,74 @@
+[0.101s] Invoking command in '/home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/build/mam_eurobot_2026': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/build/mam_eurobot_2026 -- -j8 -l8
+[0.332s] [  0%] Built target ament_cmake_python_copy_mam_eurobot_2026
+[0.372s] [100%] Built target cpp_test
+[0.987s] running egg_info
+[0.989s] writing mam_eurobot_2026.egg-info/PKG-INFO
+[0.992s] writing dependency_links to mam_eurobot_2026.egg-info/dependency_links.txt
+[0.997s] writing top-level names to mam_eurobot_2026.egg-info/top_level.txt
+[1.014s] reading manifest file 'mam_eurobot_2026.egg-info/SOURCES.txt'
+[1.037s] writing manifest file 'mam_eurobot_2026.egg-info/SOURCES.txt'
+[1.072s] [100%] Built target ament_cmake_python_build_mam_eurobot_2026_egg
+[1.096s] Invoked command in '/home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/build/mam_eurobot_2026' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/build/mam_eurobot_2026 -- -j8 -l8
+[1.131s] Invoking command in '/home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/build/mam_eurobot_2026': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/build/mam_eurobot_2026
+[1.134s] -- Install configuration: ""
+[1.166s] -- Up-to-date: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/lib/mam_eurobot_2026/cpp_test
+[1.201s] -- Up-to-date: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/launch
+[1.219s] -- Up-to-date: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/launch/arena.launch.py
+[1.232s] -- Up-to-date: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/launch/arena.launch.xml
+[1.244s] -- Up-to-date: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/launch/camera_bridge.launch.py
+[1.257s] -- Up-to-date: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/launch/test_world.launch.py
+[1.267s] -- Up-to-date: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/worlds
+[1.283s] -- Up-to-date: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/worlds/arena_world.sdf
+[1.293s] -- Up-to-date: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/models
+[1.308s] -- Up-to-date: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/models/aruco
+[1.329s] -- Up-to-date: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/models/aruco/aruco_36.png
+[1.344s] -- Up-to-date: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/models/aruco/aruco_47.png
+[1.357s] -- Up-to-date: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/models/crate
+[1.378s] -- Up-to-date: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/models/crate/model.config
+[1.394s] -- Up-to-date: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/models/crate/model.sdf
+[1.406s] -- Up-to-date: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/models/crate_blue
+[1.428s] -- Up-to-date: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/models/crate_blue/model.config
+[1.443s] -- Up-to-date: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/models/crate_blue/model.sdf
+[1.455s] -- Up-to-date: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/models/crate_yellow
+[1.475s] -- Up-to-date: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/models/crate_yellow/model.config
+[1.492s] -- Up-to-date: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/models/crate_yellow/model.sdf
+[1.505s] -- Up-to-date: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/models/mat
+[1.527s] -- Up-to-date: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/models/mat/mat.png
+[1.542s] -- Up-to-date: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/models/mat/model.config
+[1.558s] -- Up-to-date: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/models/mat/model.sdf
+[1.570s] -- Up-to-date: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/models/simple_robot
+[1.590s] -- Up-to-date: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/models/simple_robot/model.config
+[1.606s] -- Up-to-date: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/models/simple_robot/model.sdf
+[1.616s] -- Up-to-date: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/urdf
+[1.635s] -- Up-to-date: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/urdf/four_wheel_robot.xacro
+[1.644s] -- Up-to-date: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/config
+[1.660s] -- Up-to-date: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/config/mecanum_drive_controller.yaml
+[1.675s] -- Up-to-date: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/urdf/four_wheel_robot.xacro
+[1.692s] -- Up-to-date: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/environment/pythonpath.sh
+[1.707s] -- Up-to-date: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/environment/pythonpath.dsv
+[1.720s] -- Up-to-date: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/local/lib/python3.10/dist-packages/mam_eurobot_2026-0.0.0-py3.10.egg-info
+[1.746s] -- Installing: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/local/lib/python3.10/dist-packages/mam_eurobot_2026-0.0.0-py3.10.egg-info/dependency_links.txt
+[1.815s] -- Installing: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/local/lib/python3.10/dist-packages/mam_eurobot_2026-0.0.0-py3.10.egg-info/PKG-INFO
+[1.886s] -- Installing: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/local/lib/python3.10/dist-packages/mam_eurobot_2026-0.0.0-py3.10.egg-info/SOURCES.txt
+[1.953s] -- Installing: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/local/lib/python3.10/dist-packages/mam_eurobot_2026-0.0.0-py3.10.egg-info/top_level.txt
+[2.019s] -- Up-to-date: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/local/lib/python3.10/dist-packages/mam_eurobot_2026
+[2.041s] -- Up-to-date: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/local/lib/python3.10/dist-packages/mam_eurobot_2026/py_test.py
+[2.056s] -- Up-to-date: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/local/lib/python3.10/dist-packages/mam_eurobot_2026/__init__.py
+[2.267s] Listing '/home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/local/lib/python3.10/dist-packages/mam_eurobot_2026'...
+[2.282s] -- Up-to-date: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/lib/mam_eurobot_2026/py_test.py
+[2.304s] -- Up-to-date: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/ament_index/resource_index/package_run_dependencies/mam_eurobot_2026
+[2.330s] -- Up-to-date: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/ament_index/resource_index/parent_prefix_path/mam_eurobot_2026
+[2.343s] -- Up-to-date: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/environment/ament_prefix_path.sh
+[2.358s] -- Up-to-date: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/environment/ament_prefix_path.dsv
+[2.372s] -- Up-to-date: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/environment/path.sh
+[2.388s] -- Up-to-date: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/environment/path.dsv
+[2.404s] -- Up-to-date: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/local_setup.bash
+[2.421s] -- Up-to-date: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/local_setup.sh
+[2.439s] -- Up-to-date: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/local_setup.zsh
+[2.453s] -- Up-to-date: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/local_setup.dsv
+[2.467s] -- Installing: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/package.dsv
+[2.526s] -- Up-to-date: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/ament_index/resource_index/packages/mam_eurobot_2026
+[2.543s] -- Up-to-date: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/cmake/mam_eurobot_2026Config.cmake
+[2.555s] -- Up-to-date: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/cmake/mam_eurobot_2026Config-version.cmake
+[2.569s] -- Up-to-date: /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/install/mam_eurobot_2026/share/mam_eurobot_2026/package.xml
+[2.578s] Invoked command in '/home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/build/mam_eurobot_2026' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/build/mam_eurobot_2026

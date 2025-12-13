@@ -1,0 +1,97 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-4396c4306f02bb2d2c4e.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10.2"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4
+					]
+				}
+			],
+			"name" : "",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "mam_eurobot_2026",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "ament_cmake_python_build_mam_eurobot_2026_egg::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ament_cmake_python_build_mam_eurobot_2026_egg-5961170793e4c52dbd6b.json",
+					"name" : "ament_cmake_python_build_mam_eurobot_2026_egg",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ament_cmake_python_copy_mam_eurobot_2026::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ament_cmake_python_copy_mam_eurobot_2026-e14c0df6021b25ba1f00.json",
+					"name" : "ament_cmake_python_copy_mam_eurobot_2026",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "cpp_test::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-cpp_test-f3ba789f89dd0e98cd30.json",
+					"name" : "cpp_test",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "mam_eurobot_2026_uninstall::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-mam_eurobot_2026_uninstall-8f0b3abc2e973e09ff73.json",
+					"name" : "mam_eurobot_2026_uninstall",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "uninstall::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-uninstall-1fdda981158f12f79766.json",
+					"name" : "uninstall",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/build/mam_eurobot_2026",
+		"source" : "/home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}

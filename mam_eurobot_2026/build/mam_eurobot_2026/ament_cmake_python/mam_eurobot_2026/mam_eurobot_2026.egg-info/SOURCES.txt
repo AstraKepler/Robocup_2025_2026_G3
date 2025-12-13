@@ -1,0 +1,7 @@
+setup.py
+mam_eurobot_2026/__init__.py
+mam_eurobot_2026/py_test.py
+mam_eurobot_2026.egg-info/PKG-INFO
+mam_eurobot_2026.egg-info/SOURCES.txt
+mam_eurobot_2026.egg-info/dependency_links.txt
+mam_eurobot_2026.egg-info/top_level.txt

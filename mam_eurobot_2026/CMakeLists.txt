@@ -53,15 +53,21 @@ install(DIRECTORY urdf DESTINATION share/${PROJECT_NAME})
 # Install config
 install(DIRECTORY config DESTINATION share/${PROJECT_NAME})
 
-install(DIRECTORY meshes DESTINATION share/${PROJECT_NAME})
-
 install(
   FILES 
-    urdf/four_wheel_robot.urdf
     urdf/four_wheel_robot.xacro
   DESTINATION share/${PROJECT_NAME}/urdf
   # No symlinking
 )
+
+# Install Python gripper node
+install(
+  PROGRAMS
+  gripper_control_node.py
+  DESTINATION share/${PROJECT_NAME}
+)
+
+
 
 # Install Python modules
 ament_python_install_package(${PROJECT_NAME})

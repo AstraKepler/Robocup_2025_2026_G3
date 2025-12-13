@@ -1,0 +1,12 @@
+/home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/build/mam_eurobot_2026/CMakeFiles/uninstall.dir
+/home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/build/mam_eurobot_2026/CMakeFiles/mam_eurobot_2026_uninstall.dir
+/home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/build/mam_eurobot_2026/CMakeFiles/cpp_test.dir
+/home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/build/mam_eurobot_2026/CMakeFiles/ament_cmake_python_copy_mam_eurobot_2026.dir
+/home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/build/mam_eurobot_2026/CMakeFiles/ament_cmake_python_build_mam_eurobot_2026_egg.dir
+/home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/build/mam_eurobot_2026/CMakeFiles/test.dir
+/home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/build/mam_eurobot_2026/CMakeFiles/edit_cache.dir
+/home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/build/mam_eurobot_2026/CMakeFiles/rebuild_cache.dir
+/home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/build/mam_eurobot_2026/CMakeFiles/list_install_components.dir
+/home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/build/mam_eurobot_2026/CMakeFiles/install.dir
+/home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/build/mam_eurobot_2026/CMakeFiles/install/local.dir
+/home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/build/mam_eurobot_2026/CMakeFiles/install/strip.dir
