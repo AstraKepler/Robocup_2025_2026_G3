@@ -11,6 +11,13 @@ find_package(ament_cmake_python REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(geometry_msgs REQUIRED)
 
+#controller dependencies
+find_package(ros2_control REQUIRED)
+find_package(controller_manager REQUIRED)
+find_package(hardware_interface REQUIRED)
+find_package(gazebo_ros2_control REQUIRED)
+
+
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
   # the following line skips the linter which checks for copyrights
@@ -39,6 +46,22 @@ install(DIRECTORY worlds DESTINATION share/${PROJECT_NAME})
 
 # Install models files
 install(DIRECTORY models DESTINATION share/${PROJECT_NAME})
+
+# Install urdf
+install(DIRECTORY urdf DESTINATION share/${PROJECT_NAME})
+
+# Install config
+install(DIRECTORY config DESTINATION share/${PROJECT_NAME})
+
+install(DIRECTORY meshes DESTINATION share/${PROJECT_NAME})
+
+install(
+  FILES 
+    urdf/four_wheel_robot.urdf
+    urdf/four_wheel_robot.xacro
+  DESTINATION share/${PROJECT_NAME}/urdf
+  # No symlinking
+)
 
 # Install Python modules
 ament_python_install_package(${PROJECT_NAME})

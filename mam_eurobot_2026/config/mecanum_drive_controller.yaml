@@ -1,0 +1,38 @@
+# Use the example structure but with your joint names
+controller_manager:
+  ros__parameters:
+    update_rate: 100  # Hz
+    use_sim_time: true
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+    mecanum_drive_controller:
+      type: mecanum_drive_controller/MecanumDriveController
+
+mecanum_drive_controller:
+  ros__parameters:
+    reference_timeout: 1.0
+    front_left_wheel_command_joint_name: "front_left_wheel_joint"
+    front_right_wheel_command_joint_name: "front_right_wheel_joint"
+    rear_left_wheel_command_joint_name: "rear_left_wheel_joint"
+    rear_right_wheel_command_joint_name: "rear_right_wheel_joint"
+    
+    # IMPORTANT: Check if these are the right parameter names
+    # Some controllers use different names:
+    # Try these alternatives if the above doesn't work:
+    # front_left_wheel_name: "front_left_wheel_joint"
+    # front_right_wheel_name: "front_right_wheel_joint"
+    # rear_left_wheel_name: "rear_left_wheel_joint"
+    # rear_right_wheel_name: "rear_right_wheel_joint"
+    wheel_radius: 0.03
+    wheel_separation_width: 0.22  # Your robot_y = 0.22
+    wheel_separation_length: 0.28  # Your robot_x = 0.28
+    
+    kinematics:
+        base_frame_offset: { x: 0.0, y: 0.0, theta: 0.0 }
+        wheels_radius: 0.03
+        sum_of_robot_center_projection_on_X_Y_axis: 0.23
+    base_frame_id: "chassis"  # Change to "chassis" if that's your base frame
+    odom_frame_id: "odom"
+    enable_odom_tf: true
