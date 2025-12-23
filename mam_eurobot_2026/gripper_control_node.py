@@ -1,25 +1,7 @@
-'''
-Karam Dali
-12/13/2025
-Annecy, France <3
-karamdali93@gmail.com
-The main purpose of this node is to command the gripper with single variable ;)
-1 to close the gripper
-0 to open the gripper
-
-Using the default interface the command to close the gripper will be :
-ros2 topic pub /gripper_controller/commands std_msgs/msg/Float64MultiArray "data: [1, 1]" -1
-
-And by using this node the command will be simpler:
-ros2 topic pub /gripper/cmd std_msgs/msg/Int32 "data: 1" -1
-
-'''
 #!/usr/bin/env python3
 import rclpy
 from rclpy.node import Node
 from std_msgs.msg import Int32, Float64MultiArray
-
-
 
 class GripperControl(Node):
     def __init__(self):

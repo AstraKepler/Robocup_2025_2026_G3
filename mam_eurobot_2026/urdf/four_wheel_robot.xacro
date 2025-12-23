@@ -4,7 +4,7 @@
 <!-- karamdali93@gmail.com -->
 <!-- This is a simple 4 mecanume wheels robot with a tow figer gripper in the front of it -->
 
-<!-- P.S : Any change in the robot dimentions should be reflected in config/mecanum_drive_controller.yaml -->
+<!-- P.S  Any change in the robot dimentions should be reflected in config/mecanum_drive_controller . yaml -->
 
 
 <!-- Robot Dimensions Parameters -->
@@ -12,10 +12,21 @@
 <xacro:property name="robot_y" value="0.22" /> <!-- Chassis width -->
 <xacro:property name="robot_z" value="0.05" /> <!-- Chassis height (thickness) -->
 <xacro:property name="chassis_mass" value="0.75" />
+
 <!-- Chassis Inertia Parameters -->
-<xacro:property name="ixx" value="${0.001191615 * chassis_mass}" />
-<xacro:property name="iyy" value="${0.004051490 * chassis_mass}" />
-<xacro:property name="izz" value="${0.004766458 * chassis_mass}" />
+<xacro:property name="chassis_ixx" value="${chassis_mass/12 * (robot_y*robot_y + robot_z*robot_z)}" />
+<xacro:property name="chassis_iyy" value="${chassis_mass/12 * (robot_x*robot_x + robot_z*robot_z)}" />
+<xacro:property name="chassis_izz" value="${chassis_mass/12 * (robot_x*robot_x + robot_y*robot_y)}" />
+
+<!-- Robot AruCo Parameters -->
+<xacro:property name="aruco_dimenstion" value="0.1" />
+<xacro:property name="aruco_thick" value="0.002" />
+<xacro:property name="aruco_mass" value="0.01" />
+<xacro:property name="aruco_ixx" value="${aruco_mass/12 * (aruco_dimenstion*aruco_dimenstion + aruco_thick*aruco_thick)}" />
+<xacro:property name="aruco_iyy" value="${aruco_mass/12 * (aruco_dimenstion*aruco_dimenstion + aruco_thick*aruco_thick)}" />
+<xacro:property name="aruco_izz" value="${aruco_mass/12 * (aruco_dimenstion*aruco_dimenstion + aruco_dimenstion*aruco_dimenstion)}" />
+<xacro:property name="aruco_z_offset" value="${chassis_center_z+robot_z/2 + 0.001}" />
+
 <!-- Wheel Parameters -->
 <xacro:property name="wheel_radius" value="0.03" />
 <xacro:property name="wheel_width" value="0.03" />
@@ -56,12 +67,12 @@
   <inertial>
     <mass value="${chassis_mass}"/>
     <inertia
-    ixx="${ixx}"
+    ixx="${chassis_ixx}"
     ixy="0.0"
     ixz="0.0"
-    iyy="${iyy}"
+    iyy="${chassis_iyy}"
     iyz="0.0"
-    izz="${izz}"/>
+    izz="${chassis_izz}"/>
     </inertial>
   <visual>
     <origin rpy="0 0 0" xyz="0 0 ${chassis_center_z}"/>
@@ -79,6 +90,56 @@
     </geometry>
   </collision>
 </link>
+
+<!-- Robot AruCo  -->
+<link name="aruco">
+  <inertial>
+    <mass value="${aruco_mass}"/>
+    <inertia
+      ixx="${aruco_ixx}"
+      ixy="0.0"
+      ixz="0.0"
+      iyy="${aruco_iyy}"
+      iyz="0.0"
+      izz="${aruco_izz}"/>
+  </inertial>
+  
+  <!-- Main ArUCo body (white) -->
+  <visual>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <geometry>
+      <box size="${aruco_dimenstion} ${aruco_dimenstion} ${aruco_thick}"/>
+    </geometry>
+    <material name="white">
+      <color rgba="1.0 1.0 1.0 1"/>
+    </material>
+  </visual>
+  
+  <!-- ArUCo texture on top surface -->
+  <visual name="aruco_top">
+    <origin xyz="0 0 ${aruco_thick/2}" rpy="0 0 0"/>
+    <geometry>
+      <box size="${aruco_dimenstion} ${aruco_dimenstion} 0.001"/>
+    </geometry>
+    <material name="white">
+      <color rgba="1 1 1 0"/>
+    </material>
+  </visual>
+  
+  <collision>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <geometry>
+      <box size="${aruco_dimenstion} ${aruco_dimenstion} ${aruco_thick}"/>
+    </geometry>
+  </collision>
+</link>
+
+
+<joint name="aruco_joint" type="fixed">
+  <parent link="chassis"/>
+  <child link="aruco"/>
+  <origin xyz="0 0 ${aruco_z_offset}" rpy="0 0 0"/>
+</joint>
 
 <!-- Gripper Macro -->
 <xacro:macro name="gripper" params="name x y z">
@@ -288,5 +349,22 @@ x="${rear_x}" y="${right_y}" z="${wheel_joint_z}"/>
   </plugin>
 </gazebo>
 
+  <gazebo reference="aruco">
+  <visual name="aruco_top">
+    <material>
+      <diffuse>1 1 1 1</diffuse>
+      <pbr>
+        <metal>
+          <albedo_map>
+            model://models/aruco/aruco_10.png
+          </albedo_map>
+          <metalness>0.0</metalness>
+          <roughness>0.0</roughness>
+        </metal>
+      </pbr>
+      <double_sided>true</double_sided>
+    </material>
+  </visual>
+</gazebo>
 
 </robot>

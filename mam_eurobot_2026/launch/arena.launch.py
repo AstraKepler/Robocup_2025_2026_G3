@@ -122,7 +122,7 @@ def generate_launch_description():
                     name='gripper_control',
                     output='screen',
                     parameters=[
-                        {'close_distance': 0.1025}
+                        {'close_distance': 0.01}
                     ]
                 )
             ]
