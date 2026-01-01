@@ -8,15 +8,15 @@
 
 
 <!-- Robot Dimensions Parameters -->
-<xacro:property name="robot_x" value="0.28" /> <!-- Chassis length -->
-<xacro:property name="robot_y" value="0.22" /> <!-- Chassis width -->
-<xacro:property name="robot_z" value="0.05" /> <!-- Chassis height (thickness) -->
-<xacro:property name="chassis_mass" value="0.75" />
+<xacro:property name="robot_x" value="0.28" /> <!-- base_link length -->
+<xacro:property name="robot_y" value="0.22" /> <!-- base_link width -->
+<xacro:property name="robot_z" value="0.05" /> <!-- base_link height (thickness) -->
+<xacro:property name="base_link_mass" value="0.75" />
 
-<!-- Chassis Inertia Parameters -->
-<xacro:property name="chassis_ixx" value="${chassis_mass/12 * (robot_y*robot_y + robot_z*robot_z)}" />
-<xacro:property name="chassis_iyy" value="${chassis_mass/12 * (robot_x*robot_x + robot_z*robot_z)}" />
-<xacro:property name="chassis_izz" value="${chassis_mass/12 * (robot_x*robot_x + robot_y*robot_y)}" />
+<!-- base_link Inertia Parameters -->
+<xacro:property name="base_link_ixx" value="${base_link_mass/12 * (robot_y*robot_y + robot_z*robot_z)}" />
+<xacro:property name="base_link_iyy" value="${base_link_mass/12 * (robot_x*robot_x + robot_z*robot_z)}" />
+<xacro:property name="base_link_izz" value="${base_link_mass/12 * (robot_x*robot_x + robot_y*robot_y)}" />
 
 <!-- Robot AruCo Parameters -->
 <xacro:property name="aruco_dimenstion" value="0.1" />
@@ -25,7 +25,7 @@
 <xacro:property name="aruco_ixx" value="${aruco_mass/12 * (aruco_dimenstion*aruco_dimenstion + aruco_thick*aruco_thick)}" />
 <xacro:property name="aruco_iyy" value="${aruco_mass/12 * (aruco_dimenstion*aruco_dimenstion + aruco_thick*aruco_thick)}" />
 <xacro:property name="aruco_izz" value="${aruco_mass/12 * (aruco_dimenstion*aruco_dimenstion + aruco_dimenstion*aruco_dimenstion)}" />
-<xacro:property name="aruco_z_offset" value="${chassis_center_z+robot_z/2 + 0.001}" />
+<xacro:property name="aruco_z_offset" value="${base_link_center_z+robot_z/2 + 0.001}" />
 
 <!-- Wheel Parameters -->
 <xacro:property name="wheel_radius" value="0.03" />
@@ -37,16 +37,16 @@
 <xacro:property name="wheel_ixx" value="${0.5 * wheel_mass * wheel_radius * wheel_radius}" />
 <xacro:property name="wheel_iyy" value="${(1.0/12.0) * wheel_mass * (3*wheel_radius*wheel_radius + wheel_width*wheel_width)}" />
 <xacro:property name="wheel_izz" value="${wheel_iyy}" />
-<!-- We place the CHASSIS center higher so the wheels touch ground at z=0. -->
-<!-- chassis_center_z = wheel_radius + robot_z/2 -->
-<xacro:property name="chassis_center_z" value="${wheel_radius + (robot_z/2)}" />
-<!-- Calculated Joint Positions (relative to CHASSIS origin) -->
+<!-- We place the base_link center higher so the wheels touch ground at z=0. -->
+<!-- base_link_center_z = wheel_radius + robot_z/2 -->
+<xacro:property name="base_link_center_z" value="${wheel_radius + (robot_z/2)}" />
+<!-- Calculated Joint Positions (relative to base_link origin) -->
 <xacro:property name="front_x" value="${(robot_x / 2) - wheel_radius}" />
 <xacro:property name="rear_x" value="${(-robot_x / 2) + wheel_radius}" />
 <xacro:property name="left_y" value="${(robot_y / 2) + (wheel_width / 2)}" />
 <xacro:property name="right_y" value="${(-robot_y / 2) - (wheel_width / 2)}" />
 <!-- joint z is set so wheel center absolute z == wheel_radius (wheel touches ground) -->
-<!-- joint z relative to chassis origin = -robot_z/2 -->
+<!-- joint z relative to base_link origin = -robot_z/2 -->
 <xacro:property name="wheel_joint_z" value="${robot_z/2}"/>
 
 <!-- Gripper specifications -->
@@ -57,25 +57,25 @@
 <xacro:property name="gripper_x_location" value="${(robot_x / 2) + (gripper_x/2)}" />
 <xacro:property name="gripper_L_y_location" value="${((robot_y / 2) - (gripper_y/2))}" />
 <xacro:property name="gripper_R_y_location" value="${-((robot_y / 2) - (gripper_y/2))}" />
-<xacro:property name="gripper_z_location" value="${chassis_center_z/2}" />
+<xacro:property name="gripper_z_location" value="${base_link_center_z/2}" />
 
 <!-- Crate length -->
 <xacro:property name="crate_length" value="0.15" />
 
-<!-- Base chassis -->
-<link name="chassis">
+<!-- Base base_link -->
+<link name="base_link">
   <inertial>
-    <mass value="${chassis_mass}"/>
+    <mass value="${base_link_mass}"/>
     <inertia
-    ixx="${chassis_ixx}"
+    ixx="${base_link_ixx}"
     ixy="0.0"
     ixz="0.0"
-    iyy="${chassis_iyy}"
+    iyy="${base_link_iyy}"
     iyz="0.0"
-    izz="${chassis_izz}"/>
+    izz="${base_link_izz}"/>
     </inertial>
   <visual>
-    <origin rpy="0 0 0" xyz="0 0 ${chassis_center_z}"/>
+    <origin rpy="0 0 0" xyz="0 0 ${base_link_center_z}"/>
     <geometry>
       <box size="${robot_x} ${robot_y} ${robot_z}"/>
     </geometry>
@@ -84,7 +84,7 @@
     </material>
   </visual>
   <collision>
-    <origin rpy="0 0 0" xyz="0 0 ${chassis_center_z}"/>
+    <origin rpy="0 0 0" xyz="0 0 ${base_link_center_z}"/>
     <geometry>
       <box size="${robot_x} ${robot_y} ${robot_z}"/>
     </geometry>
@@ -106,7 +106,7 @@
   
   <!-- Main ArUCo body (white) -->
   <visual>
-    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <origin rpy="0 0 1.57079" xyz="0 0 0"/>
     <geometry>
       <box size="${aruco_dimenstion} ${aruco_dimenstion} ${aruco_thick}"/>
     </geometry>
@@ -136,7 +136,7 @@
 
 
 <joint name="aruco_joint" type="fixed">
-  <parent link="chassis"/>
+  <parent link="base_link"/>
   <child link="aruco"/>
   <origin xyz="0 0 ${aruco_z_offset}" rpy="0 0 0"/>
 </joint>
@@ -171,6 +171,7 @@
     </collision>
   </link>
 </xacro:macro>
+
 <!-- Creat the left and right fingers of the gripper -->
 <xacro:gripper name="gripper_L" x="${gripper_x}" y="${gripper_y}" z="${gripper_z}"/>
 <xacro:gripper name="gripper_R" x="${gripper_x}" y="${gripper_y}" z="${gripper_z}"/>
@@ -194,11 +195,11 @@
 </xacro:macro>
 
 <!-- Creat the gripper joints -->
-<xacro:gripper_joint name="gripper_L_joint" parent="chassis" child="gripper_L"
+<xacro:gripper_joint name="gripper_L_joint" parent="base_link" child="gripper_L"
 x="${gripper_x_location}" y="${gripper_L_y_location}" z="${gripper_z_location}" 
 robot_dimention_y="${robot_y}" side="left"/>
 
-<xacro:gripper_joint name="gripper_R_joint" parent="chassis" child="gripper_R"
+<xacro:gripper_joint name="gripper_R_joint" parent="base_link" child="gripper_R"
 x="${gripper_x_location}" y="${gripper_R_y_location}" z="${gripper_z_location}" 
 robot_dimention_y="${robot_y}" side="right"/>
 
@@ -257,13 +258,13 @@ robot_dimention_y="${robot_y}" side="right"/>
 </xacro:macro>
 
 <!-- Create Wheel Joints -->
-<xacro:wheel_joint name="front_left_wheel_joint" parent="chassis" child="front_left_wheel"
+<xacro:wheel_joint name="front_left_wheel_joint" parent="base_link" child="front_left_wheel"
 x="${front_x}" y="${left_y}" z="${wheel_joint_z}"/>
-<xacro:wheel_joint name="front_right_wheel_joint" parent="chassis" child="front_right_wheel"
+<xacro:wheel_joint name="front_right_wheel_joint" parent="base_link" child="front_right_wheel"
 x="${front_x}" y="${right_y}" z="${wheel_joint_z}"/>
-<xacro:wheel_joint name="rear_left_wheel_joint" parent="chassis" child="rear_left_wheel"
+<xacro:wheel_joint name="rear_left_wheel_joint" parent="base_link" child="rear_left_wheel"
 x="${rear_x}" y="${left_y}" z="${wheel_joint_z}"/>
-<xacro:wheel_joint name="rear_right_wheel_joint" parent="chassis" child="rear_right_wheel"
+<xacro:wheel_joint name="rear_right_wheel_joint" parent="base_link" child="rear_right_wheel"
 x="${rear_x}" y="${right_y}" z="${wheel_joint_z}"/>
 
 <!-- Gazebo extension used to emulate mecanum wheel frictions -->
@@ -273,10 +274,10 @@ x="${rear_x}" y="${right_y}" z="${wheel_joint_z}"/>
       <surface>
         <friction>
           <ode>
-            <mu>2.0</mu>
+            <mu>1.0</mu>
             <mu2>0.0</mu2>
-            <!-- We express friction direction in CHASSIS frame to avoid confusion -->
-            <fdir1 ignition:expressed_in="chassis">${value}</fdir1>
+            <!-- We express friction direction in base_link frame to avoid confusion -->
+            <fdir1 ignition:expressed_in="base_link">${value}</fdir1>
           </ode>
         </friction>
       </surface>
@@ -285,7 +286,7 @@ x="${rear_x}" y="${right_y}" z="${wheel_joint_z}"/>
 </xacro:macro>
 
 
-<!-- Chassis-frame mecanum directions (X forward, Y left) -->
+<!-- base_link-frame mecanum directions (X forward, Y left) -->
 <xacro:gazebo name="front_left_wheel"  value="1 -1 0"/>
 <xacro:gazebo name="front_right_wheel" value="1 1 0"/>
 <xacro:gazebo name="rear_left_wheel"   value="1 1 0"/>
@@ -337,6 +338,25 @@ x="${rear_x}" y="${right_y}" z="${wheel_joint_z}"/>
   </joint>
 </ros2_control>
 
+<!-- IMU sensor -->
+<link name="imu_link">
+  <visual>
+    <geometry>
+      <box size="0.02 0.02 0.01"/>
+    </geometry>
+  </visual>
+  <inertial>
+    <mass value="0.01"/>
+    <inertia ixx="1e-5" ixy="0" ixz="0" iyy="1e-5" iyz="0" izz="1e-5"/>
+  </inertial>
+</link>
+
+<joint name="imu_joint" type="fixed">
+  <parent link="base_link"/>
+  <child link="imu_link"/>
+  <origin xyz="0 0 0.05" rpy="0 0 0"/> 
+</joint>
+
 
 <!-- ROS2 Control plugin and topic re-mapping -->
 <gazebo>
@@ -349,14 +369,14 @@ x="${rear_x}" y="${right_y}" z="${wheel_joint_z}"/>
   </plugin>
 </gazebo>
 
-  <gazebo reference="aruco">
+<gazebo reference="aruco">
   <visual name="aruco_top">
     <material>
       <diffuse>1 1 1 1</diffuse>
       <pbr>
         <metal>
           <albedo_map>
-            model://models/aruco/aruco_10.png
+            model://models/aruco/aruco_17.png
           </albedo_map>
           <metalness>0.0</metalness>
           <roughness>0.0</roughness>
@@ -365,6 +385,20 @@ x="${rear_x}" y="${right_y}" z="${wheel_joint_z}"/>
       <double_sided>true</double_sided>
     </material>
   </visual>
+</gazebo>
+
+<gazebo reference="imu_link">
+  <sensor name="imu_sensor" type="imu">
+    <topic>imu</topic>
+    <always_on>true</always_on>
+    <update_rate>25</update_rate>
+    <visualize>true</visualize>
+    <gz_frame_id>imu_link</gz_frame_id>
+    <plugin
+      filename="gz-sim-imu-system"
+      name="gz::sim::systems::Imu">
+    </plugin>
+  </sensor>
 </gazebo>
 
 </robot>

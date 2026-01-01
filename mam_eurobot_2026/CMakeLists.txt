@@ -61,6 +61,12 @@ install(
   # No symlinking
 )
 
+install(
+  PROGRAMS
+  view_camera.py
+  DESTINATION share/${PROJECT_NAME}
+)
+
 # Install Python gripper node
 install(
   PROGRAMS
@@ -69,6 +75,9 @@ install(
 )
 
 
+install(PROGRAMS view_camera.py DESTINATION lib/${PROJECT_NAME})
+
+install(PROGRAMS cmd_vel_bridge.py DESTINATION lib/${PROJECT_NAME})
 
 # Install Python modules
 ament_python_install_package(${PROJECT_NAME})

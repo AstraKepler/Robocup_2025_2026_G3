@@ -59,8 +59,23 @@ def generate_launch_description():
                 )
             ]
         ),
+        # 3. Remap IMU topic
+        TimerAction(
+            period=4.0,
+            actions=[
+                Node(
+                    package='ros_gz_bridge',
+                    executable='parameter_bridge',
+                    name='imu_bridge',
+                    output='screen',
+                    arguments=[
+                        '/imu@sensor_msgs/msg/Imu[gz.msgs.IMU'
+                    ],
+                )
+            ]
+        ),
         
-        # 3. Start robot state publisher after 5 seconds
+        # 4. Start robot state publisher
         TimerAction(
             period=5.0,
             actions=[
@@ -74,7 +89,7 @@ def generate_launch_description():
             ]
         ),
         
-        # 4. Spawn robot after 7 seconds
+        # 5. Spawn robot
         TimerAction(
             period=7.0,
             actions=[
@@ -84,12 +99,12 @@ def generate_launch_description():
                     output='screen',
                     arguments=['-topic', 'robot_description',
                                '-name', 'mecanum_vehicle',
-                               '-x', '0', '-y', '0', '-z', '0.15']
+                               '-x', '0.5', '-y', '0.75', '-z', '0.15','-R', '0', '-P', '0', '-Y', '0'] #'-x', '0.75', '-y', '1.15', '-z', '0.15','-R', '0', '-P', '0', '-Y', '3.14'
                 )
             ]
         ),
         
-        # 5. Start controllers after 10 seconds
+        # 6. Start controllers
         TimerAction(
             period=10.0,
             actions=[
@@ -103,6 +118,9 @@ def generate_launch_description():
                     package='controller_manager',
                     executable='spawner',
                     arguments=['mecanum_drive_controller'],
+                    remappings=[
+                        ('mecanum_drive_controller/odometry', 'odom')     # Remabing the topics for NAV2
+                    ],
                     output='screen'
                 ),
                 Node(
@@ -113,6 +131,7 @@ def generate_launch_description():
                 )
             ]
         ),
+        # 7. Start gripper controllers
         TimerAction(
             period=12.0,
             actions=[
@@ -124,6 +143,48 @@ def generate_launch_description():
                     parameters=[
                         {'close_distance': 0.01}
                     ]
+                )
+            ]
+        ),
+        # 8. Camera bridge
+        TimerAction(
+            period=14.0,
+            actions=[
+                Node(
+                    package='ros_gz_bridge',
+                    executable='parameter_bridge',
+                    name='camera_image_bridge',
+                    output='screen',
+                    arguments=[
+                        '/camera/image_raw@sensor_msgs/msg/Image@gz.msgs.Image',
+                        '/camera/camera_info@sensor_msgs/msg/CameraInfo@gz.msgs.CameraInfo'
+                    ],
+                )
+            ]
+        ),
+        # 9. Camera localization node 
+        TimerAction(
+            period=16.0,
+            actions=[
+                Node(
+                    package='mam_eurobot_2026',
+                    executable='view_camera.py',
+                    name='camera_viewer',
+                    output='screen',
+                    parameters=[{'use_sim_time': True}]
+                )
+            ]
+        ),
+        # 10. cmd_vel topic remap node
+        TimerAction(
+            period=18.0,
+            actions=[
+                Node(
+                    package='mam_eurobot_2026',
+                    executable='cmd_vel_bridge.py',
+                    name='cmd_vel_bridge',
+                    output='screen',
+                    parameters=[{'use_sim_time': True}]
                 )
             ]
         ),

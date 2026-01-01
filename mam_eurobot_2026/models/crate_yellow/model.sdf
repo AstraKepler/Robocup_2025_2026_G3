@@ -63,7 +63,7 @@
           <pbr>
             <metal>
               <!-- <albedo_map>file:///home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/models/aruco/aruco_36.png</albedo_map> -->
-              <albedo_map>model://models/aruco/aruco_47.png</albedo_map>
+              <albedo_map>model://models/aruco/aruco_10.png</albedo_map>
               <!-- <albedo_map>model://aruco/aruco_36.png</albedo_map>  it doest work  -->
               <!-- <albedo_map>file:///models/aruco/aruco_36.png</albedo_map>  -->
               <metalness>0.0</metalness>

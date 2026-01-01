@@ -1,4 +1,3 @@
-# Use the example structure but with your joint names
 controller_manager:
   ros__parameters:
     update_rate: 100  # Hz
@@ -22,19 +21,35 @@ mecanum_drive_controller:
     rear_left_wheel_command_joint_name: "rear_left_wheel_joint"
     rear_right_wheel_command_joint_name: "rear_right_wheel_joint"
     
-    
     wheel_radius: 0.03
-    wheel_separation_width: 0.22  
-    wheel_separation_length: 0.28 
+    wheel_separation_width: 0.22    # robot_y = 0.22
+    wheel_separation_length: 0.28   # robot_x = 0.28
     
     kinematics:
         base_frame_offset: { x: 0.0, y: 0.0, theta: 0.0 }
         wheels_radius: 0.03
         sum_of_robot_center_projection_on_X_Y_axis: 0.23
-    base_frame_id: "chassis"  
+    base_frame_id: "base_link" 
     odom_frame_id: "odom"
     enable_odom_tf: true
-    
+    use_stamped_vel: false
+
+# this was used in the EKF
+#    pose_covariance_diagonal:
+#      [2.0,  # x 
+#      2.0,   # y 
+#      1.0,   # z 
+#      1.0,   # roll 
+#      1.0,   # pitch 
+#      2.0]   # yaw 
+#    twist_covariance_diagonal:
+#      [0.01,   
+#      0.01,    
+#      1.0,     
+#      1.0,    
+#      1.0,     
+#      0.05]    
+
 gripper_controller:
   ros__parameters:
     joints:

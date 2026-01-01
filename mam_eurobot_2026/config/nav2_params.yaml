@@ -1,0 +1,82 @@
+bt_navigator:
+  ros__parameters:
+    use_sim_time: true
+    global_frame: map
+    robot_base_frame: base_link
+    odom_topic: "/odometry/filtered"
+    bt_xml_filename: "navigate_to_pose.xml"
+    bt_loop_duration: 100
+    server_timeout: 1.0
+
+planner_server:
+  ros__parameters:
+    use_sim_time: true
+    planner_plugins: ["GridBased"]
+    GridBased:
+      plugin: "nav2_navfn_planner/NavfnPlanner"
+      tolerance: 0.2
+      use_astar: true
+      allow_unknown: true
+
+controller_server:
+  ros__parameters:
+    use_sim_time: true
+    controller_frequency: 10.0 # 10 Hz 
+    enable_stamped_cmd_vel: true
+    controller_plugins: ["FollowPath"]
+    FollowPath:
+      plugin: "dwb_core::DWBLocalPlanner"
+      odom_topic: "/odometry/filtered"
+      holonomic_robot: true
+      max_vel_x: 0.8
+      min_vel_x: -0.8
+      max_vel_y: 0.8
+      max_vel_y: -0.8
+      max_vel_theta: 0.8
+      min_vel_theta: -0.8
+      acc_lim_x: 1.0
+      acc_lim_y: 1.0
+      acc_lim_theta: 1.0
+      vx_samples: 10
+      vy_samples: 10
+      vtheta_samples: 10
+      sim_time: 1.0 
+      xy_goal_tolerance: 0.20
+      yaw_goal_tolerance: 0.25
+      latch_xy_goal_tolerance: true
+      critics: ["PathAlign", "PathDist", "GoalDist", "GoalAlign"]
+      #PathAlign.scale: 32.0
+      #PathDist.scale: 32.0
+      #GoalDist.scale: 24.0
+      #GoalAlign.scale: 24.0
+
+global_costmap:
+  ros__parameters:
+    use_sim_time: true
+    global_frame: map
+    robot_base_frame: base_link
+    resolution: 0.05 
+    robot_radius: 0.20 
+    rolling_window: false
+    plugins: ["static_layer", "inflation_layer"]
+    static_layer:
+      plugin: "nav2_costmap_2d::StaticLayer"
+    inflation_layer:
+      plugin: "nav2_costmap_2d::InflationLayer"
+      inflation_radius: 0.22
+
+local_costmap:
+  ros__parameters:
+    use_sim_time: true
+    global_frame: odom
+    robot_base_frame: base_link
+    rolling_window: true
+    width: 3.0
+    height: 3.0
+    resolution: 0.05
+    robot_radius: 0.20
+    transform_tolerance: 1.0 
+    plugins: [] # Empty to foce the use of the global plan
+    inflation_layer:
+      plugin: "nav2_costmap_2d::InflationLayer"
+      inflation_radius: 0.22

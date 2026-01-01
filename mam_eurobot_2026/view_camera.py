@@ -5,24 +5,29 @@ from sensor_msgs.msg import Image , CameraInfo
 from cv_bridge import CvBridge
 import cv2
 import numpy as np
+#from geometry_msgs.msg import TransformStamped
+from tf2_ros import TransformBroadcaster, Buffer, TransformListener
+#import tf_transformations
+#from tf2_msgs.msg import TFMessage
+from geometry_msgs.msg import PoseWithCovarianceStamped
+from tf_transformations import quaternion_from_euler
 
 class CameraViewer(Node):
     def __init__(self):
         # Set this variable to True if you want to see the output of the print()'s function for debuging
         self.debug_camera = False
-        self.debug_crates = True
-        self.i = 0
+        self.debug_crates = False
+        self.debug_robot = True
+
         super().__init__('camera_viewer')
 
-        self.subscription_info = self.create_subscription(CameraInfo, '/camera/camera_info',
-                                                           self.set_camera_info,10)
-        
-        self.subscription = self.create_subscription(
-            Image, '/camera/image_raw', self.image_callback, 10)
+        self.subscription_info = self.create_subscription(CameraInfo, '/camera/camera_info',self.set_camera_info,10)
+        self.subscription = self.create_subscription(Image, '/camera/image_raw', self.image_callback, 10)
+        #self.create_subscription(TFMessage,"/mecanum_drive_controller/tf_odometry",self.broadcast_map_to_odom,10)
+        self.pose_pub = self.create_publisher(PoseWithCovarianceStamped,"/camera/pose",10)
         
         self.bridge = CvBridge()
         
-
         # Camera intrinsic parameters will be set by set_camera_info method
         self.fx = None
         self.fy = None
@@ -34,12 +39,12 @@ class CameraViewer(Node):
         # A 4*4 homogeneous transformation matrix of the camera in the world frame
         self.T_world_camera_final = None
 
-        # ArUco marker parameters
+        # ArUco marker printed on the playing arena parameters
         self.marker_length = 0.1  # meters
         self.aruco_dict = cv2.aruco.Dictionary_get(cv2.aruco.DICT_4X4_1000)
         self.aruco_params = cv2.aruco.DetectorParameters_create()
 
-        # Marker world positions (x, y, z) in meters
+        # Playing arena markers positions (x, y, z) in meters according to our world frame  (In the above right corner of the playing arena)
         self.marker_world_positions = {
             20: [0.6, 1.4, 0],
             21: [2.4, 1.4, 0], 
@@ -47,10 +52,41 @@ class CameraViewer(Node):
             23: [2.4, 0.6, 0]
         }
 
-        # The ArUco of the crtes
+        # Crates marker parameters
         self.crate_marker_length = 0.0375  # meters
         self.crate_aruco_dict = cv2.aruco.Dictionary_get(cv2.aruco.DICT_4X4_1000)
         self.crate_aruco_params = cv2.aruco.DetectorParameters_create()
+        
+        # Yellow crates aruco ID
+        self.yellow = 10
+        
+        # Blue crates aruco ID
+        self.blue = 126
+
+        self.yellow_crate_poses = []    # List of  yellow crates position T_world_crate 
+        self.blue_crate_poses = []      # List of  blue crates position T_world_crate 
+
+        # Nearest YELLOW crate position to the robot
+        self.nearest_yellow_crate = None
+
+        # Nearest BLUE crate position to the robot
+        self.nearest_blue_crate = None
+
+        # Robot marker parameters
+        self.robot_aruco_length = 0.1   #meter
+        self.robot_aruco_dict = cv2.aruco.Dictionary_get(cv2.aruco.DICT_4X4_1000)
+        self.robot_aruco_params = cv2.aruco.DetectorParameters_create()
+
+        # Robot aruco ID
+        self.robot_ID = 17
+
+        # A 4*4 homogeneous transformation matrix of the robot in the world frame (robot Position)
+        self.robot_position = None
+
+        self.tf_buffer = Buffer()
+        self.tf_listener = TransformListener(self.tf_buffer, self)
+        self.tf_broadcaster = TransformBroadcaster(self)
+
     
     def detect_camera_pose(self,frame_undistorted):
         corners, ids, _ = cv2.aruco.detectMarkers(frame_undistorted, self.aruco_dict, parameters=self.aruco_params)
@@ -64,15 +100,16 @@ class CameraViewer(Node):
                 if marker_id not in [20, 21, 22, 23]:
                     continue
                 # Draw detection and axis
-                cv2.aruco.drawDetectedMarkers(frame_undistorted, corners)
-                cv2.aruco.drawAxis(
-                    frame_undistorted,
-                    self.camera_matrix,
-                    self.dist_coeffs,
-                    rvecs[i],
-                    tvecs[i],
-                    self.marker_length / 2
-                )
+                if (self.debug_camera):
+                    cv2.aruco.drawDetectedMarkers(frame_undistorted, corners)
+                    cv2.aruco.drawAxis(
+                        frame_undistorted,
+                        self.camera_matrix,
+                        self.dist_coeffs,
+                        rvecs[i],
+                        tvecs[i],
+                        self.marker_length / 2
+                    )
 
                 # Compute T_camera_marker
                 T_camera_marker = self.compute_transformation_matrix(rvecs[i], tvecs[i])
@@ -105,7 +142,6 @@ class CameraViewer(Node):
             frame_undistorted, self.crate_aruco_dict, parameters=self.crate_aruco_params
         )
         
-        crate_poses = []  # List of (marker_id, T_world_crate) tuples
         
         if ids is not None:
             rvecs, tvecs, _ = cv2.aruco.estimatePoseSingleMarkers(
@@ -114,21 +150,24 @@ class CameraViewer(Node):
             
             for i in range(len(ids)):
                 marker_id = ids[i][0]
-                if marker_id in [20, 21, 22, 23]: # Exclude playing arena ArUco 
+                if marker_id in [20, 21, 22, 23, self.robot_ID]: # Excluding playing arena and robot markers 
                     continue
                 # Draw detection and axis
-                cv2.aruco.drawDetectedMarkers(frame_undistorted, corners)
-                cv2.aruco.drawAxis(
-                    frame_undistorted,
-                    self.camera_matrix,
-                    self.dist_coeffs,
-                    rvecs[i],
-                    tvecs[i],
-                    self.crate_marker_length / 2
-                )
-                x, y = int(corners[i][0][0][0]), int(corners[i][0][0][1])
-                cv2.putText(frame_undistorted, f"Iter: {i}", (x, y - 10),
-                            cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 0), 2)
+                if self.debug_crates:
+                    cv2.aruco.drawDetectedMarkers(frame_undistorted, corners)
+                    cv2.aruco.drawAxis(
+                        frame_undistorted,
+                        self.camera_matrix,
+                        self.dist_coeffs,
+                        rvecs[i],
+                        tvecs[i],
+                        self.crate_marker_length / 2
+                    )
+                
+                if self.debug_crates:
+                    x, y = int(corners[i][0][0][0]), int(corners[i][0][0][1])
+                    cv2.putText(frame_undistorted, f"Iter: {i}", (x, y - 10),
+                                cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 0), 2)
 
                 # Get crate pose in camera frame
                 T_camera_crate = self.compute_transformation_matrix(rvecs[i], tvecs[i])
@@ -136,14 +175,126 @@ class CameraViewer(Node):
                 # Transform to world frame
                 T_world_crate = self.T_world_camera_final @ T_camera_crate
                 
-                crate_poses.append((marker_id, T_world_crate))
+                if marker_id == self.yellow:
+                    self.yellow_crate_poses.append(T_world_crate)
+
+                if marker_id == self.blue:
+                    self.blue_crate_poses.append(T_world_crate)
                 
                 if self.debug_crates:
                     print(f"Crate ID {marker_id} - T_world_crate{i}:")
-                    print(f"{T_world_crate}\n")
+                    print(f"{T_world_crate}\n")  
+
+    def detect_robot_pos(self, frame_undistorted):
+        corners, ids, _ = cv2.aruco.detectMarkers(
+            frame_undistorted, self.robot_aruco_dict, parameters=self.robot_aruco_params
+        )
         
-        return crate_poses      
-          
+        
+        if ids is not None:
+            rvecs, tvecs, _ = cv2.aruco.estimatePoseSingleMarkers(
+                corners, self.robot_aruco_length, self.camera_matrix, self.dist_coeffs
+            )
+            
+            for i in range(len(ids)):
+                marker_id = ids[i][0]
+                if marker_id in [20, 21, 22, 23, self.yellow, self.blue]: # Excluding playing arena and crates markers 
+                    continue
+                # Draw detection and axis
+                if self.debug_robot:
+                    cv2.aruco.drawDetectedMarkers(frame_undistorted, corners)
+                    cv2.aruco.drawAxis(
+                        frame_undistorted,
+                        self.camera_matrix,
+                        self.dist_coeffs,
+                        rvecs[i],
+                        tvecs[i],
+                        self.robot_aruco_length / 2
+                    )
+                
+                # Get robot posistion in camera frame
+                T_camera_robot = self.compute_transformation_matrix(rvecs[i], tvecs[i])
+                
+                # Transform to world frame
+                self.robot_position = self.T_world_camera_final @ T_camera_robot
+                '''
+                if self.debug_robot:
+                    print(f"T_world_Robot( ID :{marker_id}) : ")
+                    print(f"{self.robot_position}\n")  
+                '''
+                # Extracting the robot position 
+                x = self.robot_position[0, 3]
+                y = self.robot_position[1, 3]
+
+                R = self.robot_position[:3, :3]
+
+                if not np.isfinite(R).all():
+                    self.get_logger().warn("Skip Nan x, y!")
+                    return  # skip publish
+
+                yaw = np.arctan2(R[1, 0], R[0, 0])
+
+                if not np.isfinite(yaw):
+                    self.get_logger().warn("Skip Nan yaw!")
+                    return
+                
+                msg = PoseWithCovarianceStamped()
+                msg.header.stamp = self.get_clock().now().to_msg()
+                msg.header.frame_id = "map"   # IMPORTANT
+
+                msg.pose.pose.position.x = x
+                msg.pose.pose.position.y = y
+                msg.pose.pose.position.z = 0.0
+
+                qx, qy, qz, qw = quaternion_from_euler(0.0, 0.0, yaw)
+                msg.pose.pose.orientation.x = qx
+                msg.pose.pose.orientation.y = qy
+                msg.pose.pose.orientation.z = qz
+                msg.pose.pose.orientation.w = qw
+                msg.pose.covariance = [
+                    float(0.02), float(0.0),  float(0.0),  float(0.0),  float(0.0),  float(0.0),
+                    float(0.0),  float(0.02), float(0.0),  float(0.0),  float(0.0),  float(0.0),
+                    float(0.0),  float(0.0),  float(1e6),  float(0.0),  float(0.0),  float(0.0),
+                    float(0.0),  float(0.0),  float(0.0),  float(1e6),  float(0.0),  float(0.0),
+                    float(0.0),  float(0.0),  float(0.0),  float(0.0),  float(1e6),  float(0.0),
+                    float(0.0),  float(0.0),  float(0.0),  float(0.0),  float(0.0),  float(0.1)
+                ]
+                if not np.isfinite([x, y, yaw]).all():
+                    self.get_logger().warn("Skip Nan orientation!")
+                    return
+                self.pose_pub.publish(msg)
+                self.get_logger().warn("Robot location published!")
+
+
+    def set_nearest_yellow_crate(self):
+        distances = []
+        # Get the robot x, y axises
+        robot_position_x = self.robot_position[0][-1]
+        robot_position_y = self.robot_position[1][-1]
+        # Get the x, y for each yellow crate
+        for crate in self.yellow_crate_poses:
+            crate_position_x = crate[0][-1]
+            crate_position_y = crate[1][-1]
+            # Calculate the linear distances between each crate and the robot
+            robot_crates_distance = (((robot_position_x-crate_position_x)**2)+ ((robot_position_y-crate_position_y)**2))**0.5
+            distances.append(robot_crates_distance)
+        self.nearest_yellow_crate = self.yellow_crate_poses[distances.index(min(distances))]
+
+    def set_nearest_blue_crate(self):
+        distances = []
+        # Get the robot x, y axises
+        robot_position_x = self.robot_position[0][-1]
+        robot_position_y = self.robot_position[1][-1]
+        # Get the x, y for each blue crate
+        for crate in self.blue_crate_poses:
+            crate_position_x = crate[0][-1]
+            crate_position_y = crate[1][-1]
+            # Calculate the linear distances between each crate and the robot
+            robot_crates_distance = (((robot_position_x-crate_position_x)**2)+ ((robot_position_y-crate_position_y)**2))**0.5
+            distances.append(robot_crates_distance)
+        self.nearest_blue_crate = self.blue_crate_poses[distances.index(min(distances))]
+
+
     def compute_transformation_matrix(self, rvec, tvec):
         """Convert rotation vector and translation vector to 4x4 transformation matrix"""
         R, _ = cv2.Rodrigues(rvec)
@@ -172,9 +323,78 @@ class CameraViewer(Node):
         T_world_camera = T_world_marker @ T_marker_camera
         
         return T_world_camera
+
+    # Experemental code to compute the FT tree required by NAV2 Manually but it fails :)    
+    '''
+    def matrix_from_tf(self,tf):
+        t = tf.transform.translation
+        r = tf.transform.rotation
+        return tf_transformations.concatenate_matrices(
+            tf_transformations.translation_matrix([t.x, t.y, t.z]),
+            tf_transformations.quaternion_matrix([r.x, r.y, r.z, r.w])
+        )
+
+    def tf_from_matrix(self,mat):
+        t = TransformStamped()
+        trans = tf_transformations.translation_from_matrix(mat)
+        quat = tf_transformations.quaternion_from_matrix(mat)
+        t.transform.translation.x = trans[0]
+        t.transform.translation.y = trans[1]
+        t.transform.translation.z = trans[2]
+        t.transform.rotation.x = quat[0]
+        t.transform.rotation.y = quat[1]
+        t.transform.rotation.z = quat[2]
+        t.transform.rotation.w = quat[3]
+        return t
     
+    def broadcast_map_to_odom(self, odom_tf_msg: TFMessage):
+       
+        # Compute and publish map -> odom from camera-based map->base_link and odom->base_link
+
+        if self.robot_position is None:
+            self.get_logger().warn("Camera-based robot position not yet available")
+            return
+
+        # Extract odom -> base_link from TFMessage
+        odom_to_base_link_tf = None
+        for tf in odom_tf_msg.transforms:
+            if tf.child_frame_id == "base_link":
+                odom_to_base_link_tf = tf
+                break
+
+        if odom_to_base_link_tf is None:
+            self.get_logger().warn("No odom->base_link transform found in TFMessage")
+            return
+            t1 = TransformStamped()
+        
+        
+        # Translation/rotation from robot_position
+        
+        # Convert to 4x4 matrix
+        T_odom_base_link = self.matrix_from_tf(odom_to_base_link_tf)
+
+        # Map -> base_link from camera
+        T_map_base_link = self.robot_position  # 4x4 numpy matrix
+
+        t1 = self.tf_from_matrix(T_odom_base_link)
+        t1.header.stamp = self.get_clock().now().to_msg()
+        t1.header.frame_id = "odom"
+        t1.child_frame_id = "base_link"
+        self.tf_broadcaster.sendTransform(t1)
+        # Compute Map -> Odom
+
+        T_map_odom = T_map_base_link @ np.linalg.inv(T_odom_base_link)
+       
+        # Publish Map -> Odom
+        t = self.tf_from_matrix(T_map_odom)
+        t.header.stamp = self.get_clock().now().to_msg()
+        t.header.frame_id = "map"
+        t.child_frame_id = "odom"
+        self.tf_broadcaster.sendTransform(t)
+        self.get_logger().warn("you should see this")
+        '''
     def set_camera_info(self, msg):
-        if(self.fx is None): # To prevent it from reseting the camera parameters
+        if(self.fx is None): # To prevent from reseting the camera parameters
             self.fx = msg.p[0]
             self.fy = msg.p[5]
             self.cx = msg.p[2]
@@ -186,51 +406,25 @@ class CameraViewer(Node):
             print("K:", self.camera_matrix)
             print("D:", self.dist_coeffs)
 
-    def crate_detection(self, frame_undistorted):
-        corners, ids, _ = cv2.aruco.detectMarkers(frame_undistorted, self.crate_aruco_dict, parameters=self.crate_aruco_params)
-
-        if ids is not None:
-            rvecs, tvecs, _ = cv2.aruco.estimatePoseSingleMarkers(
-                corners, self.crate_marker_length, self.camera_matrix, self.dist_coeffs
-            )
-
-            T_world_camera_list = []
-
-            for i in range(len(ids)):
-                marker_id = ids[i][0]
-                    
-                # Draw detection and axis
-                cv2.aruco.drawDetectedMarkers(frame_undistorted, corners)
-                cv2.aruco.drawAxis(
-                    frame_undistorted,
-                    self.camera_matrix,
-                    self.dist_coeffs,
-                    rvecs[i],
-                    tvecs[i],
-                    self.marker_length / 2
-                )
 
     def image_callback(self, msg):
+        
         if(self.fx is not None):
-            
-            # Convert ROS Image to OpenCV
-            frame = self.bridge.imgmsg_to_cv2(msg, "bgr8")
+            frame = self.bridge.imgmsg_to_cv2(msg, "bgr8") # Convert ROS Image to OpenCV
             # Undistort the image
             #frame_undistorted = cv2.undistort(frame, self.camera_matrix, self.dist_coeffs)
             frame_undistorted = frame
             
             
-            
-            if(self.T_world_camera_final is None): 
+            if(self.T_world_camera_final is None): # Check if the camera position is set regarding to the world frame.
                 self.detect_camera_pose(frame_undistorted)
             else:
-                '''
-                if(self.i == 0):
-                    self.i =1
-                '''  
-                self.detect_crates_poses(frame_undistorted)
+                self.detect_crates_poses(frame_undistorted) # We get the position of all crates in the playing arena.
+                self.detect_robot_pos(frame_undistorted)    # We get the position of the robot.
+                
+
           
-            cv2.imshow("Camera Feed", frame_undistorted)
+            #cv2.imshow("Camera Feed", frame_undistorted)  #comment this to save some CPU power
         if cv2.waitKey(1) & 0xFF == ord('q'):
             cv2.destroyAllWindows()
             rclpy.shutdown()
