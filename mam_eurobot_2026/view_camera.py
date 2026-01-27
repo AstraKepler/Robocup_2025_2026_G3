@@ -14,10 +14,10 @@ from tf_transformations import quaternion_from_euler
 
 class CameraViewer(Node):
     def __init__(self):
-        # Set this variable to True if you want to see the output of the print()'s function for debuging
+        #Set this variable to True if you want to see the output of the print()'s function for debuging
         self.debug_camera = False
         self.debug_crates = False
-        self.debug_robot = True
+        self.debug_robot = False
 
         super().__init__('camera_viewer')
 
@@ -111,7 +111,7 @@ class CameraViewer(Node):
                         self.marker_length / 2
                     )
 
-                # Compute T_camera_marker
+                # compute T_camera_marker
                 T_camera_marker = self.compute_transformation_matrix(rvecs[i], tvecs[i])
                 
                 if (self.debug_camera):
@@ -180,10 +180,11 @@ class CameraViewer(Node):
 
                 if marker_id == self.blue:
                     self.blue_crate_poses.append(T_world_crate)
-                
+                '''
                 if self.debug_crates:
                     print(f"Crate ID {marker_id} - T_world_crate{i}:")
                     print(f"{T_world_crate}\n")  
+                '''
 
     def detect_robot_pos(self, frame_undistorted):
         corners, ids, _ = cv2.aruco.detectMarkers(
@@ -219,7 +220,7 @@ class CameraViewer(Node):
                 self.robot_position = self.T_world_camera_final @ T_camera_robot
                 '''
                 if self.debug_robot:
-                    print(f"T_world_Robot( ID :{marker_id}) : ")
+                    print(f"T_world_Robot( AruCo ID :{marker_id}) : ")
                     print(f"{self.robot_position}\n")  
                 '''
                 # Extracting the robot position 
@@ -240,7 +241,7 @@ class CameraViewer(Node):
                 
                 msg = PoseWithCovarianceStamped()
                 msg.header.stamp = self.get_clock().now().to_msg()
-                msg.header.frame_id = "map"   # IMPORTANT
+                msg.header.frame_id = "map"   #IMPORTANT
 
                 msg.pose.pose.position.x = x
                 msg.pose.pose.position.y = y
@@ -259,39 +260,42 @@ class CameraViewer(Node):
                     float(0.0),  float(0.0),  float(0.0),  float(0.0),  float(1e6),  float(0.0),
                     float(0.0),  float(0.0),  float(0.0),  float(0.0),  float(0.0),  float(0.1)
                 ]
+                
                 if not np.isfinite([x, y, yaw]).all():
-                    self.get_logger().warn("Skip Nan orientation!")
+                    #self.get_logger().warn("Skip Nan orientation")
                     return
                 self.pose_pub.publish(msg)
-                self.get_logger().warn("Robot location published!")
+                #self.get_logger().warn("Robot location published")
 
 
     def set_nearest_yellow_crate(self):
         distances = []
-        # Get the robot x, y axises
+        # Get the robot x, y position
         robot_position_x = self.robot_position[0][-1]
         robot_position_y = self.robot_position[1][-1]
-        # Get the x, y for each yellow crate
+        # Get the x, y position for each yellow crate
         for crate in self.yellow_crate_poses:
             crate_position_x = crate[0][-1]
             crate_position_y = crate[1][-1]
             # Calculate the linear distances between each crate and the robot
             robot_crates_distance = (((robot_position_x-crate_position_x)**2)+ ((robot_position_y-crate_position_y)**2))**0.5
             distances.append(robot_crates_distance)
+        # Get the nearest yellow crate to the robot !!!!!
         self.nearest_yellow_crate = self.yellow_crate_poses[distances.index(min(distances))]
 
     def set_nearest_blue_crate(self):
         distances = []
-        # Get the robot x, y axises
+        # Get the robot x, y Position
         robot_position_x = self.robot_position[0][-1]
         robot_position_y = self.robot_position[1][-1]
-        # Get the x, y for each blue crate
+        # Get the x, y position for each blue crate
         for crate in self.blue_crate_poses:
             crate_position_x = crate[0][-1]
             crate_position_y = crate[1][-1]
             # Calculate the linear distances between each crate and the robot
             robot_crates_distance = (((robot_position_x-crate_position_x)**2)+ ((robot_position_y-crate_position_y)**2))**0.5
             distances.append(robot_crates_distance)
+        #Get the nearest blue crate to the robot
         self.nearest_blue_crate = self.blue_crate_poses[distances.index(min(distances))]
 
 
@@ -324,75 +328,6 @@ class CameraViewer(Node):
         
         return T_world_camera
 
-    # Experemental code to compute the FT tree required by NAV2 Manually but it fails :)    
-    '''
-    def matrix_from_tf(self,tf):
-        t = tf.transform.translation
-        r = tf.transform.rotation
-        return tf_transformations.concatenate_matrices(
-            tf_transformations.translation_matrix([t.x, t.y, t.z]),
-            tf_transformations.quaternion_matrix([r.x, r.y, r.z, r.w])
-        )
-
-    def tf_from_matrix(self,mat):
-        t = TransformStamped()
-        trans = tf_transformations.translation_from_matrix(mat)
-        quat = tf_transformations.quaternion_from_matrix(mat)
-        t.transform.translation.x = trans[0]
-        t.transform.translation.y = trans[1]
-        t.transform.translation.z = trans[2]
-        t.transform.rotation.x = quat[0]
-        t.transform.rotation.y = quat[1]
-        t.transform.rotation.z = quat[2]
-        t.transform.rotation.w = quat[3]
-        return t
-    
-    def broadcast_map_to_odom(self, odom_tf_msg: TFMessage):
-       
-        # Compute and publish map -> odom from camera-based map->base_link and odom->base_link
-
-        if self.robot_position is None:
-            self.get_logger().warn("Camera-based robot position not yet available")
-            return
-
-        # Extract odom -> base_link from TFMessage
-        odom_to_base_link_tf = None
-        for tf in odom_tf_msg.transforms:
-            if tf.child_frame_id == "base_link":
-                odom_to_base_link_tf = tf
-                break
-
-        if odom_to_base_link_tf is None:
-            self.get_logger().warn("No odom->base_link transform found in TFMessage")
-            return
-            t1 = TransformStamped()
-        
-        
-        # Translation/rotation from robot_position
-        
-        # Convert to 4x4 matrix
-        T_odom_base_link = self.matrix_from_tf(odom_to_base_link_tf)
-
-        # Map -> base_link from camera
-        T_map_base_link = self.robot_position  # 4x4 numpy matrix
-
-        t1 = self.tf_from_matrix(T_odom_base_link)
-        t1.header.stamp = self.get_clock().now().to_msg()
-        t1.header.frame_id = "odom"
-        t1.child_frame_id = "base_link"
-        self.tf_broadcaster.sendTransform(t1)
-        # Compute Map -> Odom
-
-        T_map_odom = T_map_base_link @ np.linalg.inv(T_odom_base_link)
-       
-        # Publish Map -> Odom
-        t = self.tf_from_matrix(T_map_odom)
-        t.header.stamp = self.get_clock().now().to_msg()
-        t.header.frame_id = "map"
-        t.child_frame_id = "odom"
-        self.tf_broadcaster.sendTransform(t)
-        self.get_logger().warn("you should see this")
-        '''
     def set_camera_info(self, msg):
         if(self.fx is None): # To prevent from reseting the camera parameters
             self.fx = msg.p[0]
@@ -413,7 +348,7 @@ class CameraViewer(Node):
             frame = self.bridge.imgmsg_to_cv2(msg, "bgr8") # Convert ROS Image to OpenCV
             # Undistort the image
             #frame_undistorted = cv2.undistort(frame, self.camera_matrix, self.dist_coeffs)
-            frame_undistorted = frame
+            frame_undistorted = frame #We set the camera setting without any distortion (perfect "pin hole") so the frame is ready to be useed without the previous step
             
             
             if(self.T_world_camera_final is None): # Check if the camera position is set regarding to the world frame.
@@ -424,7 +359,7 @@ class CameraViewer(Node):
                 
 
           
-            #cv2.imshow("Camera Feed", frame_undistorted)  #comment this to save some CPU power
+            cv2.imshow("Camera Feed", frame_undistorted)  # Comment this to save some CPU power if you dont need the camera output to show up
         if cv2.waitKey(1) & 0xFF == ord('q'):
             cv2.destroyAllWindows()
             rclpy.shutdown()

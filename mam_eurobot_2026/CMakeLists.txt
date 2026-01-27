@@ -61,19 +61,11 @@ install(
   # No symlinking
 )
 
-install(
-  PROGRAMS
-  view_camera.py
-  DESTINATION share/${PROJECT_NAME}
-)
+
 
 # Install Python gripper node
-install(
-  PROGRAMS
-  gripper_control_node.py
-  DESTINATION share/${PROJECT_NAME}
-)
 
+install(PROGRAMS gripper_control_node.py DESTINATION lib/${PROJECT_NAME})
 
 install(PROGRAMS view_camera.py DESTINATION lib/${PROJECT_NAME})
 
